@@ -179,6 +179,67 @@ def get_max_strat_helper(tree,player,current_node,current_range,result):
 
             get_max_strat_helper(tree,player,child,current_range,result)
 
+
+
+def calc_max_ev(tree,strat_pair,hero,villian):
+
+
+    calc_max_ev_helper(tree,0,strat_pair,hero,villian)
+
+
+
+def calc_max_ev_helper(tree,dec_pt,strat_pair,hero,villian):
+
+    curr_player = dec_pt.player
+
+    if dec_pt.is_leaf:
+        pass
+
+    elif curr_player == hero:
+        pass
+
+    elif curr_player == villian:
+        pass
+
+    else: # for AKQ game there are no nature nodes
+        print("Error: incorrect dec pt")
+
+
+
+def calc_max_leaf(tree,dec_pt,strat_pair,hero,villian):
+
+    if dec_pt.action == "call":
+        # ev = (S - cip) + equity*(pot)
+        ev = strat_pair.sb
+        pass
+
+    elif dec_pt.action == "fold":
+
+        if dec_pt.player == hero: # villian folded
+            # ev = (StartStack + villian cip)
+            pass
+
+        elif dec_pt.player == villian: # hero folded
+            # ev = (StartStack - hero cip)
+            pass
+        else:
+            print("invalid player name at node: " + str(dec_pt.node_index))
+    else:
+        print("Invalid action in calc_max_leaf")
+
+
+def calc_max_hero(tree,dec_pt,strat_pair,hero,villian):
+    pass
+
+
+def calc_max_villian(tree,dec_pt,strat_pair,hero,villian):
+    pass
+
+
+def calc_max_(tree,dec_pt,strat_pair,hero,villian):
+    pass
+
+
 def hand_v_range_equity(hand,range):
     '''
     For this game the hand first range equity is quite straightforward

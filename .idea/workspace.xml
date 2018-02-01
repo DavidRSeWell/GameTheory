@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb944ddb-e3e2-4a7d-801f-00326065ea59" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Poker/XFP.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Poker/XFP.py" afterPath="$PROJECT_DIR$/Poker/XFP.py" />
     </list>
     <ignored path="GameTheory.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,8 +26,8 @@
       <file leaf-file-name="XFP.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Poker/XFP.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="202" column="0" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
+            <state relative-caret-position="247">
+              <caret line="212" column="26" selection-start-line="212" selection-start-column="26" selection-end-line="212" selection-end-column="26" />
               <folding>
                 <element signature="e#0#678#1" expanded="false" />
                 <element signature="e#709#3622#0" expanded="false" />
@@ -37,9 +38,6 @@
                 <element signature="e#3211#3381#0" expanded="false" />
                 <element signature="e#3441#3622#0" expanded="false" />
                 <element signature="e#3650#3914#0" expanded="false" />
-                <element signature="e#3970#4296#0" expanded="false" />
-                <element signature="e#4377#4872#0" expanded="false" />
-                <element signature="e#4915#5224#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -459,9 +457,6 @@
             <element signature="e#3211#3381#0" expanded="false" />
             <element signature="e#3441#3622#0" expanded="false" />
             <element signature="e#3650#3914#0" expanded="false" />
-            <element signature="e#3970#4296#0" expanded="false" />
-            <element signature="e#4377#4872#0" expanded="false" />
-            <element signature="e#4915#5224#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -529,9 +524,6 @@
             <element signature="e#3211#3381#0" expanded="false" />
             <element signature="e#3441#3622#0" expanded="false" />
             <element signature="e#3650#3914#0" expanded="false" />
-            <element signature="e#3970#4296#0" expanded="false" />
-            <element signature="e#4377#4872#0" expanded="false" />
-            <element signature="e#4915#5224#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -585,9 +577,6 @@
             <element signature="e#3211#3381#0" expanded="false" />
             <element signature="e#3441#3622#0" expanded="false" />
             <element signature="e#3650#3914#0" expanded="false" />
-            <element signature="e#3970#4296#0" expanded="false" />
-            <element signature="e#4377#4872#0" expanded="false" />
-            <element signature="e#4915#5224#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -693,8 +682,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Poker/XFP.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="202" column="0" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
+        <state relative-caret-position="247">
+          <caret line="212" column="26" selection-start-line="212" selection-start-column="26" selection-end-line="212" selection-end-column="26" />
           <folding>
             <element signature="e#0#678#1" expanded="false" />
             <element signature="e#709#3622#0" expanded="false" />
@@ -705,9 +694,6 @@
             <element signature="e#3211#3381#0" expanded="false" />
             <element signature="e#3441#3622#0" expanded="false" />
             <element signature="e#3650#3914#0" expanded="false" />
-            <element signature="e#3970#4296#0" expanded="false" />
-            <element signature="e#4377#4872#0" expanded="false" />
-            <element signature="e#4915#5224#0" expanded="false" />
           </folding>
         </state>
       </provider>
