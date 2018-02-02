@@ -58,6 +58,8 @@ class StrategyProfile:
 
         self.ranges = [{'A':1.0,'K':1.0,'Q':1.0} for node in range(self.tree.get_num_nodes())]
 
+        self.evs = {}
+
         self.sb_starting_range = {'A':1.0,'K':1.0,'Q':1.0}
 
         self.bb_starting_range = {'A':1.0,'K':1.0,'Q':1.0}
@@ -127,6 +129,51 @@ class StrategyProfile:
         :return: None
         '''
 
+    def get_starting_range(self,player):
+
+        '''
+
+        :param player:
+        :return:
+        '''
+
+        if player == "SB":
+            return self.sb_starting_range
+
+        elif player == "BB":
+            return self.bb_starting_range
+
+        else:
+            print("Error incorrect player name in get_starting_range")
+
+    def get_recent_range(self,dec_pt,player):
+
+        '''
+        Given the current decesion point return the most recent range of a player
+        :param player:
+        :return:
+        '''
+
+        if dec_pt.node_index == 0:
+
+            return self.get_starting_range(player)
+
+        parent_node_index = dec_pt.parent.node_index
+
+        return self.ranges[parent_node_index]
+
+    def get_player_cip(self,dec_pt,player):
+
+        if player == "SB":
+            return dec_pt.SB_cip
+
+        elif player == "BB":
+            return dec_pt.BB_cip
+
+        else:
+            print("Error incorrect player name in get_player_cip")
+
+
 def FP(tree,n_iter):
 
     # first intit strategy profile
@@ -179,14 +226,10 @@ def get_max_strat_helper(tree,player,current_node,current_range,result):
 
             get_max_strat_helper(tree,player,child,current_range,result)
 
-
-
 def calc_max_ev(tree,strat_pair,hero,villian):
 
 
     calc_max_ev_helper(tree,0,strat_pair,hero,villian)
-
-
 
 def calc_max_ev_helper(tree,dec_pt,strat_pair,hero,villian):
 
@@ -204,22 +247,34 @@ def calc_max_ev_helper(tree,dec_pt,strat_pair,hero,villian):
     else: # for AKQ game there are no nature nodes
         print("Error: incorrect dec pt")
 
-
-
 def calc_max_leaf(tree,dec_pt,strat_pair,hero,villian):
 
     if dec_pt.action == "call":
+        # assume the same starting stack for both players for the AKQ game
         # ev = (S - cip) + equity*(pot)
-        ev = strat_pair.sb
-        pass
+
+
+        curr_range = strat_pair.ranges[dec_pt.node_index]
+
+        villian_range = strat_pair.get_recent_range(dec_pt,villian)
+
+        for hand in list(curr_range.keys()):
+
+            hand_quity = hand_v_range_equity(hand,villian_range)
+
+            ev = (strat_pair.sb_starting_range - strat_pair.get_player_cip(dec_pt)) + hand_quity*(dec_pt.SB_cip + dec_pt.BB_cip)
+
+
 
     elif dec_pt.action == "fold":
 
         if dec_pt.player == hero: # villian folded
+
             # ev = (StartStack + villian cip)
             pass
 
         elif dec_pt.player == villian: # hero folded
+
             # ev = (StartStack - hero cip)
             pass
         else:
@@ -227,18 +282,14 @@ def calc_max_leaf(tree,dec_pt,strat_pair,hero,villian):
     else:
         print("Invalid action in calc_max_leaf")
 
-
 def calc_max_hero(tree,dec_pt,strat_pair,hero,villian):
     pass
-
 
 def calc_max_villian(tree,dec_pt,strat_pair,hero,villian):
     pass
 
-
 def calc_max_(tree,dec_pt,strat_pair,hero,villian):
     pass
-
 
 def hand_v_range_equity(hand,range):
     '''

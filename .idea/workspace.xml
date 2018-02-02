@@ -26,18 +26,27 @@
       <file leaf-file-name="XFP.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Poker/XFP.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="212" column="26" selection-start-line="212" selection-start-column="26" selection-end-line="212" selection-end-column="26" />
+            <state relative-caret-position="550">
+              <caret line="260" column="44" selection-start-line="260" selection-start-column="44" selection-end-line="260" selection-end-column="44" />
               <folding>
                 <element signature="e#0#678#1" expanded="false" />
-                <element signature="e#709#3622#0" expanded="false" />
-                <element signature="e#1828#2087#0" expanded="false" />
-                <element signature="e#2123#2239#0" expanded="false" />
-                <element signature="e#2289#2374#0" expanded="false" />
-                <element signature="e#2448#3162#0" expanded="false" />
-                <element signature="e#3211#3381#0" expanded="false" />
-                <element signature="e#3441#3622#0" expanded="false" />
-                <element signature="e#3650#3914#0" expanded="false" />
+                <element signature="e#2146#2262#0" expanded="false" />
+                <element signature="e#2312#2397#0" expanded="false" />
+                <element signature="e#2471#3185#0" expanded="false" />
+                <element signature="e#3234#3404#0" expanded="false" />
+                <element signature="e#3464#3645#0" expanded="false" />
+                <element signature="e#4419#4615#0" expanded="false" />
+                <element signature="e#4644#4908#0" expanded="false" />
+                <element signature="e#4964#5290#0" expanded="false" />
+                <element signature="e#5371#5866#0" expanded="false" />
+                <element signature="e#5921#5971#0" expanded="false" />
+                <element signature="e#6039#6287#0" expanded="false" />
+                <element signature="e#7342#7346#0" expanded="false" />
+                <element signature="e#7411#7415#0" expanded="false" />
+                <element signature="e#7473#7477#0" expanded="false" />
+                <element signature="e#7520#7829#0" expanded="false" />
+                <marker date="1517601816000" expanded="false" signature="3687:3981" ph="..." />
+                <marker date="1517601816000" expanded="false" signature="4028:4364" ph="..." />
               </folding>
             </state>
           </provider>
@@ -62,8 +71,8 @@
       <file leaf-file-name="node.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Util/node.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+            <state relative-caret-position="450">
+              <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -386,6 +395,14 @@
       <option name="presentableId" value="Default" />
       <updated>1517160754910</updated>
     </task>
+    <task id="LOCAL-00001" summary="Startted working on the max ev functions for XFP">
+      <created>1517519571375</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1517519571375</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -422,6 +439,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Startted working on the max ev functions for XFP" />
+    <option name="LAST_COMMIT_MESSAGE" value="Startted working on the max ev functions for XFP" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -449,14 +470,23 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#678#1" expanded="false" />
-            <element signature="e#709#3622#0" expanded="false" />
-            <element signature="e#1828#2087#0" expanded="false" />
-            <element signature="e#2123#2239#0" expanded="false" />
-            <element signature="e#2289#2374#0" expanded="false" />
-            <element signature="e#2448#3162#0" expanded="false" />
-            <element signature="e#3211#3381#0" expanded="false" />
-            <element signature="e#3441#3622#0" expanded="false" />
-            <element signature="e#3650#3914#0" expanded="false" />
+            <element signature="e#2146#2262#0" expanded="false" />
+            <element signature="e#2312#2397#0" expanded="false" />
+            <element signature="e#2471#3185#0" expanded="false" />
+            <element signature="e#3234#3404#0" expanded="false" />
+            <element signature="e#3464#3645#0" expanded="false" />
+            <element signature="e#4419#4615#0" expanded="false" />
+            <element signature="e#4644#4908#0" expanded="false" />
+            <element signature="e#4964#5290#0" expanded="false" />
+            <element signature="e#5371#5866#0" expanded="false" />
+            <element signature="e#5921#5971#0" expanded="false" />
+            <element signature="e#6039#6287#0" expanded="false" />
+            <element signature="e#7342#7346#0" expanded="false" />
+            <element signature="e#7411#7415#0" expanded="false" />
+            <element signature="e#7473#7477#0" expanded="false" />
+            <element signature="e#7520#7829#0" expanded="false" />
+            <marker date="1517601816000" expanded="false" signature="3687:3981" ph="..." />
+            <marker date="1517601816000" expanded="false" signature="4028:4364" ph="..." />
           </folding>
         </state>
       </provider>
@@ -516,14 +546,23 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#678#1" expanded="false" />
-            <element signature="e#709#3622#0" expanded="false" />
-            <element signature="e#1828#2087#0" expanded="false" />
-            <element signature="e#2123#2239#0" expanded="false" />
-            <element signature="e#2289#2374#0" expanded="false" />
-            <element signature="e#2448#3162#0" expanded="false" />
-            <element signature="e#3211#3381#0" expanded="false" />
-            <element signature="e#3441#3622#0" expanded="false" />
-            <element signature="e#3650#3914#0" expanded="false" />
+            <element signature="e#2146#2262#0" expanded="false" />
+            <element signature="e#2312#2397#0" expanded="false" />
+            <element signature="e#2471#3185#0" expanded="false" />
+            <element signature="e#3234#3404#0" expanded="false" />
+            <element signature="e#3464#3645#0" expanded="false" />
+            <element signature="e#4419#4615#0" expanded="false" />
+            <element signature="e#4644#4908#0" expanded="false" />
+            <element signature="e#4964#5290#0" expanded="false" />
+            <element signature="e#5371#5866#0" expanded="false" />
+            <element signature="e#5921#5971#0" expanded="false" />
+            <element signature="e#6039#6287#0" expanded="false" />
+            <element signature="e#7342#7346#0" expanded="false" />
+            <element signature="e#7411#7415#0" expanded="false" />
+            <element signature="e#7473#7477#0" expanded="false" />
+            <element signature="e#7520#7829#0" expanded="false" />
+            <marker date="1517601816000" expanded="false" signature="3687:3981" ph="..." />
+            <marker date="1517601816000" expanded="false" signature="4028:4364" ph="..." />
           </folding>
         </state>
       </provider>
@@ -569,14 +608,23 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#678#1" expanded="false" />
-            <element signature="e#709#3622#0" expanded="false" />
-            <element signature="e#1828#2087#0" expanded="false" />
-            <element signature="e#2123#2239#0" expanded="false" />
-            <element signature="e#2289#2374#0" expanded="false" />
-            <element signature="e#2448#3162#0" expanded="false" />
-            <element signature="e#3211#3381#0" expanded="false" />
-            <element signature="e#3441#3622#0" expanded="false" />
-            <element signature="e#3650#3914#0" expanded="false" />
+            <element signature="e#2146#2262#0" expanded="false" />
+            <element signature="e#2312#2397#0" expanded="false" />
+            <element signature="e#2471#3185#0" expanded="false" />
+            <element signature="e#3234#3404#0" expanded="false" />
+            <element signature="e#3464#3645#0" expanded="false" />
+            <element signature="e#4419#4615#0" expanded="false" />
+            <element signature="e#4644#4908#0" expanded="false" />
+            <element signature="e#4964#5290#0" expanded="false" />
+            <element signature="e#5371#5866#0" expanded="false" />
+            <element signature="e#5921#5971#0" expanded="false" />
+            <element signature="e#6039#6287#0" expanded="false" />
+            <element signature="e#7342#7346#0" expanded="false" />
+            <element signature="e#7411#7415#0" expanded="false" />
+            <element signature="e#7473#7477#0" expanded="false" />
+            <element signature="e#7520#7829#0" expanded="false" />
+            <marker date="1517601816000" expanded="false" signature="3687:3981" ph="..." />
+            <marker date="1517601816000" expanded="false" signature="4028:4364" ph="..." />
           </folding>
         </state>
       </provider>
@@ -645,14 +693,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Util/node.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Util/tree.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -680,20 +720,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Util/node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Poker/XFP.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="212" column="26" selection-start-line="212" selection-start-column="26" selection-end-line="212" selection-end-column="26" />
+        <state relative-caret-position="550">
+          <caret line="260" column="44" selection-start-line="260" selection-start-column="44" selection-end-line="260" selection-end-column="44" />
           <folding>
             <element signature="e#0#678#1" expanded="false" />
-            <element signature="e#709#3622#0" expanded="false" />
-            <element signature="e#1828#2087#0" expanded="false" />
-            <element signature="e#2123#2239#0" expanded="false" />
-            <element signature="e#2289#2374#0" expanded="false" />
-            <element signature="e#2448#3162#0" expanded="false" />
-            <element signature="e#3211#3381#0" expanded="false" />
-            <element signature="e#3441#3622#0" expanded="false" />
-            <element signature="e#3650#3914#0" expanded="false" />
+            <element signature="e#2146#2262#0" expanded="false" />
+            <element signature="e#2312#2397#0" expanded="false" />
+            <element signature="e#2471#3185#0" expanded="false" />
+            <element signature="e#3234#3404#0" expanded="false" />
+            <element signature="e#3464#3645#0" expanded="false" />
+            <element signature="e#4419#4615#0" expanded="false" />
+            <element signature="e#4644#4908#0" expanded="false" />
+            <element signature="e#4964#5290#0" expanded="false" />
+            <element signature="e#5371#5866#0" expanded="false" />
+            <element signature="e#5921#5971#0" expanded="false" />
+            <element signature="e#6039#6287#0" expanded="false" />
+            <element signature="e#7342#7346#0" expanded="false" />
+            <element signature="e#7411#7415#0" expanded="false" />
+            <element signature="e#7473#7477#0" expanded="false" />
+            <element signature="e#7520#7829#0" expanded="false" />
+            <marker date="1517601816000" expanded="false" signature="3687:3981" ph="..." />
+            <marker date="1517601816000" expanded="false" signature="4028:4364" ph="..." />
           </folding>
         </state>
       </provider>
