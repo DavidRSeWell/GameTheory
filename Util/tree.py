@@ -3,11 +3,15 @@
 
 class Tree:
 
-    def __init__(self):
+    def __init__(self,sb_starting_stack=1,bb_starting_stack=1):
 
         self.nodes = []
 
         self.node_index = 0
+
+        self.sb_starting_stack = sb_starting_stack
+
+        self.bb_starting_stack = bb_starting_stack
 
     def set_root(self,node):
 

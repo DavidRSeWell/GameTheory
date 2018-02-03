@@ -69,6 +69,10 @@ class GameState(object):
 
         opponent = self.get_opponent(player)
 
+        if is_leaf:
+
+            opponent = "Leaf"
+
         new_node = PokerNode(opponent,parent=current_node,action=action,SB_cip=SB_cip,BB_cip=BB_cip,is_leaf=is_leaf)
 
         self.tree.add_node(new_node)
