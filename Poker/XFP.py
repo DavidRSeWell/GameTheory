@@ -34,6 +34,7 @@ import numpy as np
 
 
 AQK_HANDS = ["A","K","Q"]
+AQK_HAND_NUMS = [0,1,2]
 
 class StrategyProfile:
 
@@ -63,7 +64,10 @@ class StrategyProfile:
 
         self.ranges = [{'A':1.0,'K':1.0,'Q':1.0} for node in range(self.tree.get_num_nodes())]
 
-        self.evs = {}
+        self.ev = {
+            "SB":{},
+            "BB":{}
+        }
 
         self.sb_starting_range = {'A':1.0,'K':1.0,'Q':1.0}
 
@@ -77,6 +81,15 @@ class StrategyProfile:
         :return:
         '''
         self.initialize_helper(0, 1.0, 1.0)
+
+        for i in range(len(self.ranges)):
+
+            self.ev["SB"][i] = [0,0,0]
+            self.ev["BB"][i] = [0,0,0]
+
+        print("Done initializing")
+
+
 
     def scale_range(self,range,scale):
 
@@ -116,13 +129,35 @@ class StrategyProfile:
 
             self.initialize_helper(iChild.node_index, sbScale, bbScale)
 
-    def update_strategy_profile(self,br_profile):
+    def update_strategy_profile(self,br_profile,n):
         '''
         Uses the calculated best response profile to update the current
         strategy profile.
         :param br_profile: list of strategies
         :return: None
         '''
+
+        for player in list(br_profile.keys()):
+
+            for node_index in list(br_profile[player].keys()):
+
+                self.ranges[node_index] = self.update_range_basic(self.ranges[node_index],br_profile[player][node_index],n)
+
+    def update_range_basic(self,r1, r2, n):
+        '''
+
+        :param r1:
+        :param r2:
+        :param n:
+        :return:
+        '''
+        fraction = 1 - 1 / (n + 2.0)
+
+        for hand in AQK_HANDS:
+
+            r1[hand] =  r1[hand]* (fraction) + (r2[hand]) * (1 - fraction)
+
+        return r1
 
     def get_starting_range(self,player):
 
@@ -181,18 +216,10 @@ class StrategyProfile:
         else:
             print("Error incorrect player name in get_player_cip")
 
-def FP(tree,n_iter):
 
-    # first intit strategy profile
-    strategy_profile = StrategyProfile(tree)
-
-    while(n_iter > 0):
-
-        # first find best Response profile
-        best_response_profile = calculate_best_response(strategy_profile)
-        # Now update each
-
-        n_iter -= 1
+##############################
+### MAX EV/Strat FUNCTIONS ###
+##############################
 
 def get_max_strat(player,strategy_profile):
     '''
@@ -206,11 +233,11 @@ def get_max_strat(player,strategy_profile):
 
     if player == "SB":
 
-        get_max_strat_helper(player,strategy_profile,0,strategy_profile.sb_starting_range,result)
+        get_max_strat_helper(player,strategy_profile,strategy_profile.tree.get_root(),strategy_profile.sb_starting_range,result)
 
     elif player == "BB":
 
-        get_max_strat_helper(player,strategy_profile,0,strategy_profile.bb_starting_range,result)
+        get_max_strat_helper(player,strategy_profile,strategy_profile.tree.get_root(),strategy_profile.bb_starting_range,result)
 
     else:
 
@@ -224,9 +251,15 @@ def get_max_strat_helper(player,strategy_profile,current_node,current_range,resu
 
     if current_node.player == player:
 
-        for hand in AQK_HANDS:
+        for child in current_node.children:
 
-            if strategy_profile.ranges[current_index][hand] > 0: # only look at hand if we have it in current range
+            result[child.node_index] = {"A": 0, "K": 0, "Q": 0}
+
+        for hand in AQK_HAND_NUMS:
+
+            hand_string = get_hand_string(hand)
+
+            if strategy_profile.ranges[current_index][hand_string] > 0: # only look at hand if we have it in current range
 
                 # we need to look at the expected value of each hand for every action
                 # the best response strategy will be the one the picks the strategy
@@ -238,8 +271,6 @@ def get_max_strat_helper(player,strategy_profile,current_node,current_range,resu
 
                 for child in current_node.children:
 
-                    result[child.node_index] = {"A":0,"K":0,"Q":0}
-
                     child_ev = strategy_profile.ev[player][child.node_index][hand]
 
                     if child_ev > max_ev:
@@ -248,19 +279,15 @@ def get_max_strat_helper(player,strategy_profile,current_node,current_range,resu
 
                         max_ev_node = child
 
-                result[max_ev_node.node_index][hand] = strategy_profile.ranges[current_index][hand]
+                result[max_ev_node.node_index][hand_string] = strategy_profile.ranges[current_index][hand_string]
 
+    for child in current_node.children:
 
-    else:
-
-        for child in current_node.children:
-
-            get_max_strat_helper(player,child,current_range,result)
+        get_max_strat_helper(player,strategy_profile,child,current_range,result)
 
 def calc_max_ev(strat_pair,hero,villain):
 
-
-    calc_max_ev_helper(0,strat_pair,hero,villain)
+    calc_max_ev_helper(strat_pair.tree.get_root(),strat_pair,hero,villain)
 
 def calc_max_ev_helper(dec_pt,strat_pair,hero,villain):
 
@@ -286,7 +313,9 @@ def calc_max_ev_leaf(dec_pt,strat_pair,hero,villain):
 
     curr_index = dec_pt.node_index
 
-    if dec_pt.action == "call":
+    action = list(dec_pt.action.keys())[0]
+
+    if action == "call" or action == "check":
 
         # assume the same starting stack for both players for the AKQ game
         # ev = (S - cip) + equity*(pot)
@@ -297,25 +326,31 @@ def calc_max_ev_leaf(dec_pt,strat_pair,hero,villain):
 
         for hand in list(curr_range.keys()):
 
+            hand_number = get_hand_number(hand)
+
             hand_quity = hand_v_range_equity(hand,villain_range)
 
-            ev = (strat_pair.get_player_starting_stack(hero) - strat_pair.get_player_cip(dec_pt)) + hand_quity*(dec_pt.SB_cip + dec_pt.BB_cip)
+            ev = (strat_pair.get_player_starting_stack(hero) - strat_pair.get_player_cip(dec_pt,hero)) + hand_quity*(dec_pt.SB_cip + dec_pt.BB_cip)
 
-            strat_pair.ev[hero][curr_index][hand] = ev
+            strat_pair.ev[hero][curr_index][hand_number] = ev
 
-    elif dec_pt.action == "fold":
+    elif action == "fold":
 
-        if dec_pt.player == hero: # villain folded
+        if dec_pt.parent.player == villain: # villain folded
 
             # ev = (StartStack + villain cip)
 
-            strat_pair.ev[hero][curr_index] = strat_pair.get_player_starting_stack(hero) + strat_pair.get_player_cip(dec_pt,villain)
+            ev = strat_pair.get_player_starting_stack(hero) + strat_pair.get_player_cip(dec_pt,villain)
 
-        elif dec_pt.player == villain: # hero folded
+            strat_pair.ev[hero][curr_index] = np.ones_like(strat_pair.ev[hero][curr_index])*ev
+
+        elif dec_pt.parent.player == hero: # hero folded
 
             # ev = (StartStack - hero cip)
 
-            strat_pair.ev[hero][curr_index] = strat_pair.get_player_starting_stack(hero) - strat_pair.get_player_cip(dec_pt,hero)
+            ev = strat_pair.get_player_starting_stack(hero) - strat_pair.get_player_cip(dec_pt,hero)
+
+            strat_pair.ev[hero][curr_index] = np.ones_like(strat_pair.ev[hero][curr_index])*ev
 
         else:
             print("invalid player name at node: " + str(dec_pt.node_index))
@@ -366,6 +401,7 @@ def calc_max_villain(dec_pt,strat_pair,hero,villain):
 
     for hand in AQK_HANDS: # for each hand in the heroes range the villains range will have a diff frequency
 
+        hand_index = get_hand_number(hand)
 
         total_possible = 0
 
@@ -387,7 +423,10 @@ def calc_max_villain(dec_pt,strat_pair,hero,villain):
 
         for child_dec_pt in dec_pt.children:
 
-            strat_pair.ev[hero][curr_index][hand] = (strat_pair.ev[hero][curr_index][hand])*villain_frequency[child_dec_pt.node_index]/total_possible
+            ev = (strat_pair.ev[hero][child_dec_pt.node_index][hand_index])*villain_frequency[child_dec_pt.node_index]/total_possible
+
+            strat_pair.ev[hero][curr_index][hand_index] = ev
+
 
 ##########################
 ### AKQ UTIL FUNCTIONS ###
@@ -432,7 +471,29 @@ def get_num_hands(hero_hand,range):
 
     return num_hands
 
-def calculate_best_response(self,strategy_profile):
+def get_hand_number(hand):
+
+    if hand == "A":
+        return 0
+
+    elif hand == "K":
+        return 1
+
+    else:
+        return 2
+
+def get_hand_string(hand):
+
+    if hand == 0:
+        return "A"
+
+    elif hand == 1:
+        return "K"
+
+    else:
+        return "Q"
+
+def calculate_best_response(strategy_profile):
     '''
     Looks at the current strategy profile on the object and calculates and
     returns a best response profile
@@ -449,8 +510,31 @@ def calculate_best_response(self,strategy_profile):
 
     br_sb_strategy = get_max_strat("SB",strategy_profile)
 
+    best_response_profile["SB"] = br_sb_strategy
+
     calc_max_ev(strategy_profile,"BB","SB")
 
     br_bb_strategy = get_max_strat("BB",strategy_profile)
 
-    return {"sb_br":br_sb_strategy,"bb_br":br_bb_strategy}
+    best_response_profile["BB"] = br_sb_strategy
+
+    return best_response_profile
+
+def FP(tree,n_iter):
+
+    # first intit strategy profile
+    strategy_profile = StrategyProfile(tree)
+
+    j = 1
+    while(j < n_iter + 1):
+
+        # first find best Response profile
+        best_response_profile = calculate_best_response(strategy_profile)
+
+        # Now update each
+        strategy_profile.update_strategy_profile(best_response_profile,j)
+
+        j+=1
+
+
+    return strategy_profile

@@ -59,6 +59,10 @@ class Tree:
 
         return len(self.nodes)
 
+    def get_parent_action(self,node):
+
+        return list(node.parent.action.keys())[0]
+
 
 
 
