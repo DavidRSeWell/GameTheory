@@ -139,7 +139,7 @@ class StrategyProfile:
 
             for node_index in list(br_profile[player].keys()):
 
-                self.ranges[node_index] = self.update_range_basic(self.ranges[node_index],br_profile[player][node_index],n)
+                self.ranges[node_index] = self.update_range_brown(self.ranges[node_index],br_profile[player][node_index],n)
 
     def update_strategy_profile_player(self,br_profile,player,n):
         '''
@@ -161,11 +161,19 @@ class StrategyProfile:
         :param n:
         :return:
         '''
-        fraction = 1 - 1 / (n/100 + 2)
+        fraction = 1 - 1 / (n + 2)
 
         for hand in AQK_HANDS:
 
             r1[hand] =  r1[hand]* (fraction) + (r2[hand]) * (1 - fraction)
+
+        return r1
+
+    def update_range_brown(self,r1,r2,n):
+
+        for hand in AQK_HANDS:
+
+            r1[hand] = (n/(n + 1))*r1[hand] + (1/(n + 1))*r2[hand]
 
         return r1
 
@@ -211,9 +219,28 @@ class StrategyProfile:
 
             return self.get_starting_range(player)
 
-        parent_node_index = dec_pt.parent.node_index
 
-        return self.ranges[parent_node_index]
+        if dec_pt.player == "Leaf":
+
+            if player == dec_pt.parent.player:
+
+                return self.ranges[dec_pt.node_index]
+
+            else:
+
+                return self.ranges[dec_pt.parent.node_index]
+
+        '''curr_index = dec_pt.node_index
+
+        curr_player = dec_pt.player
+
+        while(player != curr_player):
+
+            curr_player = dec_pt.parent.player
+
+            curr_index = dec_pt.parent.node_index
+
+        return self.ranges[curr_index]'''
 
     def get_player_cip(self,dec_pt,player):
 
@@ -282,7 +309,7 @@ def get_max_strat_helper(player,strategy_profile,current_node,current_range,resu
 
                     child_ev = strategy_profile.ev[player][child.node_index][hand]
 
-                    if child_ev >= max_ev:
+                    if child_ev > max_ev:
 
                         max_ev = child_ev
 
@@ -334,11 +361,9 @@ def calc_max_ev_leaf(dec_pt,strat_pair,hero,villain):
         # assume the same starting stack for both players for the AKQ game
         # ev = (S - cip) + equity*(pot)
 
-        curr_range = strat_pair.ranges[dec_pt.node_index]
-
         villain_range = strat_pair.get_recent_range(dec_pt,villain)
 
-        for hand in list(curr_range.keys()):
+        for hand in AQK_HANDS:
 
             hand_number = get_hand_number(hand)
 
@@ -466,6 +491,7 @@ def hand_v_range_equity(hand,range):
     elif hand == "K":
 
         return range["Q"]/(range["Q"] + range["A"])
+        #return 0.5
 
     else:
         # the hand must be a Q and the Q never has any equity
