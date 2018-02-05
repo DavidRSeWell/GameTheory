@@ -45,7 +45,37 @@ if run_test_strategy_prof:
 ###############################
 ## Run AKQ XFP Algo
 ###############################
-run_akq_xfp = 1
+run_akq_xfp_simple = 1
+if run_akq_xfp_simple:
+
+    tree = Tree.Tree()
+
+    players = ["SB", "BB"]
+
+    init_SB_cip = 0.0
+    init_BB_cip = 0.0
+
+    akq_game = Game.GameState(tree=tree, players=players, name='akq_game')
+
+    akq_game.set_root(players[0], init_SB_cip, init_BB_cip)
+
+    root = akq_game.tree.get_root()
+
+    akq_game.new_action(current_index=0, player="SB", action={"check": 0})
+
+    akq_game.new_action(current_index=1, player="BB", action={"bet": 1})
+    akq_game.new_action(current_index=1, player="BB", action={"check": 0})
+
+    akq_game.new_action(current_index=2, player="SB", action={"call": 1})
+    akq_game.new_action(current_index=2, player="SB", action={"fold": 0})
+
+    solution_strategies = FP(akq_game.tree,n_iter=10000)
+
+    print("Done running akq xfp")
+
+
+
+run_akq_xfp = 0
 if run_akq_xfp:
 
     tree = Tree.Tree()
@@ -73,7 +103,8 @@ if run_akq_xfp:
     akq_game.new_action(current_index=5, player="SB", action={"call": 1})
     akq_game.new_action(current_index=5, player="SB", action={"fold": 0})
 
-    solution_strategies = FP(akq_game.tree,n_iter=100)
+    solution_strategies = FP(akq_game.tree,n_iter=1000)
 
+    print("Done running akq xfp")
 
 
