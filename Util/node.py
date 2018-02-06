@@ -1,7 +1,4 @@
 
-
-
-
 class PokerNode(object):
 
     '''
@@ -35,3 +32,38 @@ class PokerNode(object):
         self.SB_cip = SB_cip
 
         self.BB_cip = BB_cip
+
+class InfoNode(object):
+
+    '''
+
+    Nodes used in incomplete information games
+
+    '''
+
+    def __init__(self, player_hand,player,action,parent,SB_cip,BB_cip,is_leaf=False):
+
+        self.node_index = None
+
+        self.player_hand = player_hand
+
+        self.player = player
+
+        self.action = action
+
+        self.children = []
+
+        self.parent = parent
+
+        self.visit_count = 0  # number of times the node has been visited in MCTS
+
+        self.current_ev_value = 0  # total value of node for current player
+
+        # self.current_ucb1 = 0 # average ev + 2 * sqrt ( ln (total iterations) / visit_count)
+
+        self.is_leaf = is_leaf
+
+        self.SB_cip = SB_cip # the number of cip for p1
+
+        self.BB_cip = BB_cip # the number of cip for p2
+

@@ -361,7 +361,26 @@ def calc_max_ev_leaf(dec_pt,strat_pair,hero,villain):
         # assume the same starting stack for both players for the AKQ game
         # ev = (S - cip) + equity*(pot)
 
-        villain_range = strat_pair.get_recent_range(dec_pt,villain)
+        #villain_range = strat_pair.get_recent_range(dec_pt,villain)
+        villain_range = None
+
+        if curr_index == 4:
+
+            if villain == "SB":
+                villain_range = strat_pair.ranges[4]
+
+            else:
+                villain_range = strat_pair.ranges[2]
+
+        elif curr_index == 3:
+
+            if villain == "SB":
+                villain_range = strat_pair.ranges[1]
+
+            else:
+                villain_range = strat_pair.ranges[3]
+
+        print('hey')
 
         for hand in AQK_HANDS:
 
