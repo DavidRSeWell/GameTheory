@@ -59,6 +59,226 @@ import numpy as np
 from Util.node import InfoNode,PokerNode
 from Util.tree import InfoTree
 
+
+
+AQK_HANDS = ["A","K","Q"]
+AQK_HAND_NUMS = [0,1,2]
+
+class MCTSStrategyProfile:
+
+    '''
+    A strategy profile is defined as the set of strategies for each player in the game
+    for a simple 2 player poker game such as we will use in this example there will just
+    be 2 different strategies represented where each strategy itself will be the distribution
+    of actions that a player takes at every information state in the game.
+
+    Example:
+        For the AKQ game the strategy profile will look something like
+        Node 0: {sb: { bet: {A:1.0,K:0.0,Q:0.33}, check: {A:0.0,K:1.0,Q:0.66} } , bb: {.....
+
+        So the small blind has a distribution for each one of his actions at the first node and this
+        would continue for each player for every node.
+
+        The distribution of hands for each player in poker is generally referred to his/her range. In the
+        literature this is referred to as the players behavioral strategy.
+
+        In this code base I will simply use Range to denote a players distribution of hands at a give node in
+        the game tree. This is simpler and is easier to communicate to a more general audience
+    '''
+
+    def __init__(self,tree):
+
+        self.tree = tree
+
+        self.ranges = [{'A':1.0,'K':1.0,'Q':1.0} for node in range(self.tree.get_num_nodes())]
+
+        self.policy = {
+            "SB":{},
+            "BB":{}
+        }
+
+        self.sb_starting_range = {'A':1.0,'K':1.0,'Q':1.0}
+
+        self.bb_starting_range = {'A':1.0,'K':1.0,'Q':1.0}
+
+        self.initialize()
+
+    def initialize(self):
+        '''
+        Set all ranges in Strategy pair
+        :return:
+        '''
+        self.initialize_helper(0, 1.0, 1.0)
+
+        for i in range(len(self.ranges)):
+
+            self.policy["SB"][i]["ev"] = [0,0,0]
+
+            self.policy["SB"][i]["count"] = 0
+
+            self.policy["BB"][i]["ev"] = [0,0,0]
+
+            self.policy["BB"][i]["count"] = 0
+
+        print("Done initializing")
+
+    def scale_range(self,range,scale):
+
+        for key in list(range.keys()):
+
+            range[key] *= scale
+
+        return range
+
+    def initialize_helper(self, icurrDecpt, sbScale, bbScale):
+
+        children = self.tree.nodes[icurrDecpt].children
+
+        numChildren = len(children)
+
+        if numChildren == 0:
+            return
+
+        if self.tree.nodes[icurrDecpt].player == "SB":
+
+            sbScale /= numChildren
+
+            for iChild in children:
+
+                self.ranges[iChild.node_index] = self.scale_range(self.ranges[iChild.node_index],sbScale)
+
+        elif self.tree.nodes[icurrDecpt].player == "BB":
+
+            bbScale /= numChildren
+
+            for iChild in children:
+
+                self.ranges[iChild.node_index] = self.scale_range(self.ranges[iChild.node_index],bbScale)
+
+
+        for iChild in children:
+
+            self.initialize_helper(iChild.node_index, sbScale, bbScale)
+
+    def update_strategy_profile(self,br_profile,n):
+        '''
+        Uses the calculated best response profile to update the current
+        strategy profile.
+        :param br_profile: list of strategies
+        :return: None
+        '''
+
+        for player in list(br_profile.keys()):
+
+            for node_index in list(br_profile[player].keys()):
+
+                self.ranges[node_index] = self.update_range_brown(self.ranges[node_index],br_profile[player][node_index],n)
+
+    def update_strategy_profile_player(self,br_profile,player,n):
+        '''
+        Uses the calculated best response profile to update the current
+        strategy profile.
+        :param br_profile: list of strategies
+        :return: None
+        '''
+
+        for node_index in list(br_profile[player].keys()):
+
+            self.ranges[node_index] = self.update_range_basic(self.ranges[node_index],br_profile[player][node_index],n)
+
+    def update_range_basic(self,r1, hand, n,direction):
+        '''
+
+        :param r1:
+        :param r2:
+        :param n:
+        :return:
+        '''
+        fraction = 1 - 1 / (n + 2)
+
+        for hand in AQK_HANDS:
+
+            #r1[hand] =  r1[hand]* (fraction) + (direction) * (1 - fraction)
+            r1[hand] +=  r1[hand]*fraction*direction
+
+        return r1
+
+    def get_starting_range(self,player):
+
+        '''
+
+        :param player:
+        :return:
+        '''
+
+        if player == "SB":
+            return self.sb_starting_range
+
+        elif player == "BB":
+            return self.bb_starting_range
+
+        else:
+            print("Error incorrect player name in get_starting_range")
+
+    def get_player_starting_stack(self,player):
+
+        if player == "SB":
+
+            return self.tree.sb_starting_stack
+
+        elif player == "BB":
+
+            return self.tree.bb_starting_stack
+
+        else:
+            print("Incorrect player name passed to method:get_player_starting_stack")
+
+    def get_recent_range(self,dec_pt,player):
+
+        '''
+        Given the current decesion point return the most recent range of a player
+        :param player:
+        :return:
+        '''
+
+        if dec_pt.node_index == 0:
+
+            return self.get_starting_range(player)
+
+
+        if dec_pt.player == "Leaf":
+
+            if player == dec_pt.parent.player:
+
+                return self.ranges[dec_pt.node_index]
+
+            else:
+
+                return self.ranges[dec_pt.parent.node_index]
+
+        '''curr_index = dec_pt.node_index
+
+        curr_player = dec_pt.player
+
+        while(player != curr_player):
+
+            curr_player = dec_pt.parent.player
+
+            curr_index = dec_pt.parent.node_index
+
+        return self.ranges[curr_index]'''
+
+    def get_player_cip(self,dec_pt,player):
+
+        if player == "SB":
+            return dec_pt.SB_cip
+
+        elif player == "BB":
+            return dec_pt.BB_cip
+
+        else:
+            print("Error incorrect player name in get_player_cip")
+
 class ExtensiveFormMCTS(object):
     '''
     Outline of what a basic mcts algorith looks like for games of hidden info
@@ -142,20 +362,18 @@ class AKQPlayer(object):
 
         self.policy = {}
 
-        self.out_of_tree = False
-
         self.current_hand = None
 
         self.starting_stack = starting_stack
 
-class AKQGameState(object):
+class AKQMixedMcts(object):
     '''
     class used for simulating a simple AKQ poker game
     The game state needs to deal random cards to each player
     and to track the button
     '''
 
-    def __init__(self,game_tree):
+    def __init__(self,game_tree,strat_profile):
 
         self.player1 = None
 
@@ -166,6 +384,8 @@ class AKQGameState(object):
         self.deck = [3,2,1]
 
         self.game_tree = game_tree # the full game tree for for the information trees to reference
+
+        self.strat_profile = strat_profile
 
         self.init_game()
 
@@ -238,15 +458,18 @@ class AKQGameState(object):
 
         node_children = s.children
 
+        children = []
+
         for child in node_children:
 
             if child.action == a:
 
-                return child
+                children.insert(0,child)
 
             else:
-                continue
+                children.append(child)
 
+        return children
         # we should not reach this line of code
         # the function should always be able to return a new state
 
@@ -357,7 +580,7 @@ class AKQGameState(object):
 
         new_action = self.rollout_policy(s)
 
-        new_state = self.get_new_state(s,new_action)
+        new_state = self.get_new_state(s,new_action)[0]
 
         return self.simulate(new_state) # recursive call
 
@@ -384,7 +607,7 @@ class AKQGameState(object):
         except Exception as e:
             print("Error at rollout_policy: " + str(e))
 
-    def select_uct(self,u_i,num_iterations):
+    def select_uct(self,u_i):
 
         '''
             select action that maximizes
@@ -392,126 +615,44 @@ class AKQGameState(object):
 
         '''
 
-        N_U = u_i.visit_count
+        # Get fraction of the range of the first
+        # child in the range of the current node
 
-        if N_U == 0:
-            print("Visit count = 0!")
+        child_node = u_i.children[0]
 
-        current_max_action = None
+        p = self.strat_profile.ranges[child_node.node_index][child_node.current_hand] # get the fraction of the hand that the potential node contains
 
-        current_max = -1
+        random_select = np.random.random()
 
-        current_player = self.player1 if u_i.player == "SB" else self.player2
+        action = child_node.action
 
-        info_policy = current_player.policy[u_i.node_index]
+        if random_select > p: # if random > p take other action otherwise keep child action
 
-        for action in info_policy.keys():
+            action = u_i.children[1].action
 
-            child_ev_value = info_policy[action]['ev']
+        return action
 
-            child_visit_count = info_policy[action]['count']
-
-            score = 0
-
-            if child_visit_count == 0:
-
-                score = current_max + 1000
-
-            else:
-                score = child_ev_value + 1.5*np.sqrt(np.log(N_U)/child_visit_count)
-
-            if score > current_max:
-
-                current_max = score
-
-                current_max_action = action
-
-
-        if current_max_action == "check" or current_max_action == "fold":
-            return {current_max_action:0}
-        else:
-            return {current_max_action:1}
-
-    def simulate(self,s):
+    def simulate(self,s,i):
 
         self.iter_count += 1
-
-        '''
-            Takes in a state
-
-            if state.terminal == True:
-                return reward
-
-            Player = player(s)
-            if Player.out_of_tree == True:
-                return rollout(s)
-            InfoState = information_function(s) maps state to info state
-            if InfoState not in PlayerTree:
-                Expand(PlayerTree,InfoState)
-                a = rollout_policy
-                Player.out_of_tree = True
-            else:
-                a = select(InfoState)
-            s' = G(s,a)
-            r = simulate(s')
-            update(InfoState,a,r)
-            return r
-        '''
 
         if s.is_leaf == True:
 
             return self.reward(s)
 
-
         current_player = self.player1 if s.player == "SB" else self.player2
 
-        if current_player.out_of_tree == True:
+        action = self.select_uct(s)
 
-            return self.rollout(s)
-
-
-        infostate = self.get_info_state(current_player,s)
-
-        action = None
-
-        if not current_player.info_tree.node_in_tree(infostate):
-
-            current_player.info_tree.add_node(infostate)
-
-            action = self.rollout_policy(s)
-
-            current_player.out_of_tree = True
-
-            current_player.policy[infostate.node_index] = {}
-
-            for child in s.children:
-
-                new_action = list(child.action.keys())[0]
-
-                current_player.policy[infostate.node_index][new_action] = {}
-
-                current_player.policy[infostate.node_index][new_action]['count'] = 0
-
-                current_player.policy[infostate.node_index][new_action]['ev'] = 0
-
-
-        else:
-
-            infostate = current_player.info_tree.get_tree_node(infostate)
-
-            action = self.select_uct(infostate)
-
-
-
-        next_state = self.get_new_state(s,action)
+        next_state = self.get_new_state(s,action)[0]
 
         r = self.simulate(next_state)
 
-        self.update(current_player,infostate,action,r)
+        self.update(current_player,s,action,r)
 
         return r
 
-    def update(self,current_player,u_i, a, r,num_iter):
+    def update(self,current_player,u_i, a, r,n):
 
         '''
         N(u_i) += 1
@@ -519,20 +660,27 @@ class AKQGameState(object):
         Q(u,a) += (r - Q(u,a)) / N(u,a)
         '''
 
-        u_i.visit_count += 1
-
         player_reward = r[current_player.name]
 
-        current_player.policy[u_i.node_index][list(a.keys())[0]]['count'] += 1
+        next_state,other_child = self.get_new_state(u_i,a)
 
-        current_count = current_player.policy[u_i.node_index][list(a.keys())[0]]['count']
+        next_state_index = next_state.node_index
 
-        current_ev = current_player.policy[u_i.node_index][list(a.keys())[0]]['ev']
+        self.strat_profile.policy[current_player.name][next_state_index]["count"] += 1
+
+        current_count = self.strat_profile.policy[current_player.name][next_state_index]["count"]
+
+        current_ev = self.strat_profile.policy[current_player.name][next_state_index]["ev"]
 
         update = (player_reward - current_ev)/current_count
 
-        current_player.policy[u_i.node_index][list(a.keys())[0]]['ev'] += update
+        self.strat_profile.policy[next_state_index]['ev'] += update
 
+        direction = player_reward / np.abs(player_reward) # if player_reward < 0 -> direction = -1
+
+        self.strat_profile.update_range_basic(self.strat_profile.ranges[next_state_index],current_player.current_hand,n,direction)
+
+        self.strat_profile.update_range_basic(self.strat_profile.ranges[other_child.node_index],current_player.current_hand,n,direction)
 
     def run(self,num_iterations):
 
@@ -560,12 +708,10 @@ class AKQGameState(object):
 
             s0 = self.game_tree.get_root()
 
-            self.simulate(s0,num_iterations)
+            self.simulate(s0,i)
 
 
         return [self.player1.policy,self.player2.policy]
-
-
 
 
 
