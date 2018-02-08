@@ -55,6 +55,7 @@
 
 import random
 import numpy as np
+from Util import akq_util
 #from RL.MCTS.Model import MCTS
 from Util.node import InfoNode,PokerNode
 from Util.tree import InfoTree
@@ -111,6 +112,10 @@ class MCTSStrategyProfile:
         self.initialize_helper(0, 1.0, 1.0)
 
         for i in range(len(self.ranges)):
+
+            self.policy["SB"][i] = {}
+
+            self.policy["BB"][i] = {}
 
             self.policy["SB"][i]["ev"] = [0,0,0]
 
@@ -381,7 +386,7 @@ class AKQMixedMcts(object):
 
         self.iter_count = 0
 
-        self.deck = [3,2,1]
+        self.deck = [0,1,2]
 
         self.game_tree = game_tree # the full game tree for for the information trees to reference
 
@@ -539,7 +544,7 @@ class AKQMixedMcts(object):
         elif action_type == "check":
 
             # evaluate winner
-            if (hero.current_hand > villian.current_hand):
+            if (hero.current_hand < villian.current_hand):
                 # SB wins
                 r[hero.name] = current_pot + (hero.starting_stack - hero_cip)
 
@@ -555,7 +560,7 @@ class AKQMixedMcts(object):
         elif action_type == "call": # same as check?
 
             # evaluate winner
-            if (hero.current_hand > villian.current_hand):
+            if (hero.current_hand < villian.current_hand):
                 # SB wins
                 r[hero.name] = current_pot + (hero.starting_stack - hero_cip)
 
@@ -607,7 +612,7 @@ class AKQMixedMcts(object):
         except Exception as e:
             print("Error at rollout_policy: " + str(e))
 
-    def select_uct(self,u_i):
+    def select_uct(self,u_i,hand):
 
         '''
             select action that maximizes
@@ -618,9 +623,14 @@ class AKQMixedMcts(object):
         # Get fraction of the range of the first
         # child in the range of the current node
 
+        if(u_i.node_index == 0):
+            return u_i.children[0].action
+
         child_node = u_i.children[0]
 
-        p = self.strat_profile.ranges[child_node.node_index][child_node.current_hand] # get the fraction of the hand that the potential node contains
+        hand_string = akq_util.get_hand_string(hand)
+
+        p = self.strat_profile.ranges[child_node.node_index][hand_string] # get the fraction of the hand that the potential node contains
 
         random_select = np.random.random()
 
@@ -628,7 +638,11 @@ class AKQMixedMcts(object):
 
         if random_select > p: # if random > p take other action otherwise keep child action
 
-            action = u_i.children[1].action
+            try:
+                action = u_i.children[1].action
+
+            except Exception as e:
+                print(e)
 
         return action
 
@@ -642,13 +656,13 @@ class AKQMixedMcts(object):
 
         current_player = self.player1 if s.player == "SB" else self.player2
 
-        action = self.select_uct(s)
+        action = self.select_uct(s,current_player.current_hand)
 
         next_state = self.get_new_state(s,action)[0]
 
-        r = self.simulate(next_state)
+        r = self.simulate(next_state,i)
 
-        self.update(current_player,s,action,r)
+        self.update(current_player,s,action,r,i)
 
         return r
 
@@ -662,7 +676,14 @@ class AKQMixedMcts(object):
 
         player_reward = r[current_player.name]
 
-        next_state,other_child = self.get_new_state(u_i,a)
+        next_states = self.get_new_state(u_i,a)
+
+        if len(next_states) > 1:
+
+            next_state,other_child = next_states[0],next_states[1]
+
+        else:
+            next_state, other_child = next_states[0], None
 
         next_state_index = next_state.node_index
 
@@ -670,17 +691,25 @@ class AKQMixedMcts(object):
 
         current_count = self.strat_profile.policy[current_player.name][next_state_index]["count"]
 
-        current_ev = self.strat_profile.policy[current_player.name][next_state_index]["ev"]
+        current_ev = self.strat_profile.policy[current_player.name][next_state_index]["ev"][current_player.current_hand]
 
         update = (player_reward - current_ev)/current_count
 
-        self.strat_profile.policy[next_state_index]['ev'] += update
+        self.strat_profile.policy[current_player.name][next_state_index]['ev'][current_player.current_hand] += update
 
         direction = player_reward / np.abs(player_reward) # if player_reward < 0 -> direction = -1
 
+        if player_reward == 0.0:
+
+            direction = -1
+
+
+
         self.strat_profile.update_range_basic(self.strat_profile.ranges[next_state_index],current_player.current_hand,n,direction)
 
-        self.strat_profile.update_range_basic(self.strat_profile.ranges[other_child.node_index],current_player.current_hand,n,direction)
+        if other_child:
+
+            self.strat_profile.update_range_basic(self.strat_profile.ranges[other_child.node_index],current_player.current_hand,n,direction)
 
     def run(self,num_iterations):
 
@@ -688,7 +717,7 @@ class AKQMixedMcts(object):
 
             #self.iter_count = i
 
-            self.deck = [3,2,1] # reshuffle the cards yo
+            self.deck = [0,1,2] # reshuffle the cards yo
 
             self.player1.out_of_tree = False
 
@@ -711,7 +740,7 @@ class AKQMixedMcts(object):
             self.simulate(s0,i)
 
 
-        return [self.player1.policy,self.player2.policy]
+        return self.strat_profile
 
 
 

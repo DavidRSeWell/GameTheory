@@ -1,6 +1,6 @@
 from Poker.XFP import StrategyProfile,FP
 from Poker.mcts_akq import AKQGameState
-from Poker.mcts_behavior import AKQMixedMcts
+from Poker.mcts_behavior import AKQMixedMcts,MCTSStrategyProfile
 from Graph.graph_tree import TreeGraph
 import graphviz as gv
 import pandas as pd
@@ -221,7 +221,7 @@ if run_mcts_akq_regular:
     akq_game.new_action(current_index=2, player="SB", action={"call": 1})
     akq_game.new_action(current_index=2, player="SB", action={"fold": 0})
 
-    strategy_profile = StrategyProfile(tree)
+    strategy_profile = MCTSStrategyProfile(tree)
 
     GameState = AKQMixedMcts(tree,strategy_profile)
 
@@ -233,7 +233,7 @@ if run_mcts_akq_regular:
 
     AKQGraph.graph.render('/Users/befeltingu/GameTheory/Results/Poker/MCTS/img/akq_extended')
 
-    p1_policy, p2_policy = GameState.run(1000)
+    strategy_profile = GameState.run(1000)
 
     p1_ev_matrix = []
 
