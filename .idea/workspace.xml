@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb944ddb-e3e2-4a7d-801f-00326065ea59" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Util/akq_util.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Poker/mcts_behavior.py" afterPath="$PROJECT_DIR$/Poker/mcts_behavior.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
     </list>
     <ignored path="GameTheory.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -82,7 +80,7 @@
       <file leaf-file-name="mcts_akq.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Poker/mcts_akq.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
+            <state relative-caret-position="555">
               <caret line="533" column="80" selection-start-line="533" selection-start-column="80" selection-end-line="533" selection-end-column="80" />
               <folding>
                 <element signature="e#43#833#1" expanded="false" />
@@ -107,11 +105,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="234" column="0" selection-start-line="234" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
+            <state relative-caret-position="694">
+              <caret line="238" column="0" selection-start-line="238" selection-start-column="0" selection-end-line="238" selection-end-column="0" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
                 <element signature="e#434#1393#0" expanded="false" />
@@ -139,40 +137,43 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mcts_behavior.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mcts_behavior.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Poker/mcts_behavior.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="742" column="33" selection-start-line="742" selection-start-column="33" selection-end-line="742" selection-end-column="33" />
+            <state relative-caret-position="146">
+              <caret line="181" column="0" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
               <folding>
                 <element signature="e#43#833#1" expanded="false" />
                 <element signature="e#835#848#0" expanded="true" />
-                <element signature="e#2203#2538#0" expanded="false" />
-                <element signature="e#3091#3176#0" expanded="false" />
-                <element signature="e#3250#3964#0" expanded="false" />
-                <element signature="e#4026#4444#0" expanded="false" />
-                <element signature="e#4520#4882#0" expanded="false" />
-                <element signature="e#4948#5254#0" expanded="false" />
-                <element signature="e#5306#5590#0" expanded="false" />
-                <element signature="e#5649#5894#0" expanded="false" />
-                <element signature="e#5951#6659#0" expanded="false" />
-                <element signature="e#6714#6910#0" expanded="false" />
-                <element signature="e#6949#8562#0" expanded="false" />
-                <element signature="e#8594#8811#0" expanded="false" />
-                <element signature="e#9058#9334#0" expanded="false" />
-                <element signature="e#9370#9401#0" expanded="false" />
-                <element signature="e#9446#9743#0" expanded="false" />
-                <element signature="e#9792#9936#0" expanded="false" />
-                <element signature="e#9995#11110#0" expanded="false" />
-                <element signature="e#11154#11608#0" expanded="false" />
-                <element signature="e#11655#11875#0" expanded="false" />
-                <element signature="e#11911#12487#0" expanded="false" />
-                <element signature="e#12522#14105#0" expanded="false" />
-                <element signature="e#14141#14520#0" expanded="false" />
-                <element signature="e#14563#15006#0" expanded="false" />
-                <element signature="e#15052#15886#0" expanded="false" />
-                <element signature="e#15925#16316#0" expanded="false" />
-                <element signature="e#16376#17746#0" expanded="false" />
+                <element signature="e#2204#2539#0" expanded="false" />
+                <element signature="e#2575#3042#0" expanded="false" />
+                <element signature="e#2748#3006#0" expanded="false" />
+                <element signature="e#3092#3177#0" expanded="false" />
+                <element signature="e#3251#3965#0" expanded="false" />
+                <element signature="e#4027#4445#0" expanded="false" />
+                <element signature="e#4521#4883#0" expanded="false" />
+                <element signature="e#4949#5602#0" expanded="false" />
+                <element signature="e#5680#5769#0" expanded="false" />
+                <element signature="e#5823#6107#0" expanded="false" />
+                <element signature="e#6166#6411#0" expanded="false" />
+                <element signature="e#6468#7176#0" expanded="false" />
+                <element signature="e#7231#7427#0" expanded="false" />
+                <element signature="e#7466#9079#0" expanded="false" />
+                <element signature="e#9111#9328#0" expanded="false" />
+                <element signature="e#9575#9851#0" expanded="false" />
+                <element signature="e#9887#9918#0" expanded="false" />
+                <element signature="e#10309#10453#0" expanded="false" />
+                <element signature="e#10512#11627#0" expanded="false" />
+                <element signature="e#11671#12125#0" expanded="false" />
+                <element signature="e#12172#12392#0" expanded="false" />
+                <element signature="e#12428#13004#0" expanded="false" />
+                <element signature="e#13039#14622#0" expanded="false" />
+                <element signature="e#14658#15037#0" expanded="false" />
+                <element signature="e#15080#15523#0" expanded="false" />
+                <element signature="e#15569#16403#0" expanded="false" />
+                <element signature="e#16442#16833#0" expanded="false" />
+                <element signature="e#16893#18487#0" expanded="false" />
+                <element signature="e#18577#19083#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -192,6 +193,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Poker/mcts_akq.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Poker/mcts_behavior.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Poker/XFP.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
@@ -210,8 +212,8 @@
         <option value="$PROJECT_DIR$/Poker/XFP.py" />
         <option value="$PROJECT_DIR$/Poker/mcts_akq.py" />
         <option value="$PROJECT_DIR$/Util/akq_util.py" />
-        <option value="$PROJECT_DIR$/Poker/mcts_behavior.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/Poker/mcts_behavior.py" />
       </list>
     </option>
   </component>
@@ -533,7 +535,14 @@
       <option name="project" value="LOCAL" />
       <updated>1518056932015</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="mcts_behavior no run time errors. Resultant ranges in strategy profile are all messed up">
+      <created>1518122577620</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1518122577620</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -549,7 +558,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22048193" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3686747" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -579,7 +588,8 @@
     <MESSAGE value="Error in max ev calc somewhere. I think at leaf node calculation. Check get_recent_range function" />
     <MESSAGE value="Adding mcts akq game. Ended with divide by zero error for visit count" />
     <MESSAGE value="Just got everthing aligned on the mcts_behavior file. Lots of errors to work out" />
-    <option name="LAST_COMMIT_MESSAGE" value="Just got everthing aligned on the mcts_behavior file. Lots of errors to work out" />
+    <MESSAGE value="mcts_behavior no run time errors. Resultant ranges in strategy profile are all messed up" />
+    <option name="LAST_COMMIT_MESSAGE" value="mcts_behavior no run time errors. Resultant ranges in strategy profile are all messed up" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -595,9 +605,9 @@
           <option name="timeStamp" value="116" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>237</line>
-          <option name="timeStamp" value="129" />
+          <url>file://$PROJECT_DIR$/Poker/mcts_behavior.py</url>
+          <line>702</line>
+          <option name="timeStamp" value="138" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -607,7 +617,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="132" />
+      <option name="time" value="140" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1283,7 +1293,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Poker/mcts_akq.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
+        <state relative-caret-position="555">
           <caret line="533" column="80" selection-start-line="533" selection-start-column="80" selection-end-line="533" selection-end-column="80" />
           <folding>
             <element signature="e#43#833#1" expanded="false" />
@@ -1307,47 +1317,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Poker/mcts_behavior.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="742" column="33" selection-start-line="742" selection-start-column="33" selection-end-line="742" selection-end-column="33" />
-          <folding>
-            <element signature="e#43#833#1" expanded="false" />
-            <element signature="e#835#848#0" expanded="true" />
-            <element signature="e#2203#2538#0" expanded="false" />
-            <element signature="e#3091#3176#0" expanded="false" />
-            <element signature="e#3250#3964#0" expanded="false" />
-            <element signature="e#4026#4444#0" expanded="false" />
-            <element signature="e#4520#4882#0" expanded="false" />
-            <element signature="e#4948#5254#0" expanded="false" />
-            <element signature="e#5306#5590#0" expanded="false" />
-            <element signature="e#5649#5894#0" expanded="false" />
-            <element signature="e#5951#6659#0" expanded="false" />
-            <element signature="e#6714#6910#0" expanded="false" />
-            <element signature="e#6949#8562#0" expanded="false" />
-            <element signature="e#8594#8811#0" expanded="false" />
-            <element signature="e#9058#9334#0" expanded="false" />
-            <element signature="e#9370#9401#0" expanded="false" />
-            <element signature="e#9446#9743#0" expanded="false" />
-            <element signature="e#9792#9936#0" expanded="false" />
-            <element signature="e#9995#11110#0" expanded="false" />
-            <element signature="e#11154#11608#0" expanded="false" />
-            <element signature="e#11655#11875#0" expanded="false" />
-            <element signature="e#11911#12487#0" expanded="false" />
-            <element signature="e#12522#14105#0" expanded="false" />
-            <element signature="e#14141#14520#0" expanded="false" />
-            <element signature="e#14563#15006#0" expanded="false" />
-            <element signature="e#15052#15886#0" expanded="false" />
-            <element signature="e#15925#16316#0" expanded="false" />
-            <element signature="e#16376#17746#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="234" column="0" selection-start-line="234" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
+        <state relative-caret-position="694">
+          <caret line="238" column="0" selection-start-line="238" selection-start-column="0" selection-end-line="238" selection-end-column="0" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
             <element signature="e#434#1393#0" expanded="false" />
@@ -1358,6 +1331,46 @@
             <element signature="e#5337#5698#0" expanded="false" />
             <element signature="e#7195#7560#0" expanded="false" />
             <element signature="e#7687#8048#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Poker/mcts_behavior.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="181" column="0" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
+          <folding>
+            <element signature="e#43#833#1" expanded="false" />
+            <element signature="e#835#848#0" expanded="true" />
+            <element signature="e#2204#2539#0" expanded="false" />
+            <element signature="e#2575#3042#0" expanded="false" />
+            <element signature="e#2748#3006#0" expanded="false" />
+            <element signature="e#3092#3177#0" expanded="false" />
+            <element signature="e#3251#3965#0" expanded="false" />
+            <element signature="e#4027#4445#0" expanded="false" />
+            <element signature="e#4521#4883#0" expanded="false" />
+            <element signature="e#4949#5602#0" expanded="false" />
+            <element signature="e#5680#5769#0" expanded="false" />
+            <element signature="e#5823#6107#0" expanded="false" />
+            <element signature="e#6166#6411#0" expanded="false" />
+            <element signature="e#6468#7176#0" expanded="false" />
+            <element signature="e#7231#7427#0" expanded="false" />
+            <element signature="e#7466#9079#0" expanded="false" />
+            <element signature="e#9111#9328#0" expanded="false" />
+            <element signature="e#9575#9851#0" expanded="false" />
+            <element signature="e#9887#9918#0" expanded="false" />
+            <element signature="e#10309#10453#0" expanded="false" />
+            <element signature="e#10512#11627#0" expanded="false" />
+            <element signature="e#11671#12125#0" expanded="false" />
+            <element signature="e#12172#12392#0" expanded="false" />
+            <element signature="e#12428#13004#0" expanded="false" />
+            <element signature="e#13039#14622#0" expanded="false" />
+            <element signature="e#14658#15037#0" expanded="false" />
+            <element signature="e#15080#15523#0" expanded="false" />
+            <element signature="e#15569#16403#0" expanded="false" />
+            <element signature="e#16442#16833#0" expanded="false" />
+            <element signature="e#16893#18487#0" expanded="false" />
+            <element signature="e#18577#19083#0" expanded="false" />
           </folding>
         </state>
       </provider>

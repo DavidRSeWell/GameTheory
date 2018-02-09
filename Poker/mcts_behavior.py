@@ -63,6 +63,7 @@ from Util.tree import InfoTree
 
 
 AQK_HANDS = ["A","K","Q"]
+
 AQK_HAND_NUMS = [0,1,2]
 
 class MCTSStrategyProfile:
@@ -191,7 +192,38 @@ class MCTSStrategyProfile:
 
             self.ranges[node_index] = self.update_range_basic(self.ranges[node_index],br_profile[player][node_index],n)
 
-    def update_range_basic(self,r1, hand, n,direction):
+    def get_update_fraction(self,r1,hand,n,direction):
+
+        hand = akq_util.get_hand_string(hand)
+
+        fraction = 1 - 1 / (n + 2)
+
+        update_amount = r1[hand] * fraction
+
+        if direction == 1:  # cant increase range frac if were already using 100%
+
+            if r1[hand] == 1:
+
+                return 0 # dont update the hand at all
+
+            elif (r1[hand] + update_amount) > 1:
+                return 1 - r1[hand]
+
+            else:
+                return update_amount
+
+        if direction == -1:
+
+            if r1[hand] == 0:
+                return 0
+
+            elif (r1[hand] - update_amount) < 0:
+                return r1[hand]
+
+            else:
+                return update_amount
+
+    def update_range_basic(self,r1, hand, update_amount,direction):
         '''
 
         :param r1:
@@ -199,14 +231,8 @@ class MCTSStrategyProfile:
         :param n:
         :return:
         '''
-        fraction = 1 - 1 / (n + 2)
 
-        for hand in AQK_HANDS:
 
-            #r1[hand] =  r1[hand]* (fraction) + (direction) * (1 - fraction)
-            r1[hand] +=  r1[hand]*fraction*direction
-
-        return r1
 
     def get_starting_range(self,player):
 
@@ -406,7 +432,7 @@ class AKQMixedMcts(object):
         :return: []
         '''
 
-        if s.parent.player != "SB":
+        if s.parent.player == "SB":
 
             return [self.player1,self.player2]
 
@@ -674,6 +700,9 @@ class AKQMixedMcts(object):
         Q(u,a) += (r - Q(u,a)) / N(u,a)
         '''
 
+        if u_i.node_index == 0:
+            return
+
         player_reward = r[current_player.name]
 
         next_states = self.get_new_state(u_i,a)
@@ -703,13 +732,13 @@ class AKQMixedMcts(object):
 
             direction = -1
 
+        update_amount = self.strat_profile.get_update_fraction(self.strat_profile.ranges[next_state_index],current_player.current_hand,n,direction)
 
-
-        self.strat_profile.update_range_basic(self.strat_profile.ranges[next_state_index],current_player.current_hand,n,direction)
+        self.strat_profile.update_range_basic(self.strat_profile.ranges[next_state_index],current_player.current_hand,update_amount,direction)
 
         if other_child:
 
-            self.strat_profile.update_range_basic(self.strat_profile.ranges[other_child.node_index],current_player.current_hand,n,direction)
+            self.strat_profile.update_range_basic(self.strat_profile.ranges[other_child.node_index],current_player.current_hand,update_amount,-direction)
 
     def run(self,num_iterations):
 
