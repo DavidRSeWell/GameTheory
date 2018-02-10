@@ -70,7 +70,7 @@ if run_akq_xfp_simple:
     akq_game.new_action(current_index=2, player="SB", action={"call": 1})
     akq_game.new_action(current_index=2, player="SB", action={"fold": 0})
 
-    solution_strategies = FP(akq_game.tree,n_iter=100)
+    solution_strategies = FP(akq_game.tree,n_iter=1000)
 
     print("Done running akq xfp")
 
@@ -105,14 +105,14 @@ if run_akq_xfp:
     akq_game.new_action(current_index=5, player="SB", action={"call": 1})
     akq_game.new_action(current_index=5, player="SB", action={"fold": 0})
 
-    solution_strategies = FP(akq_game.tree,n_iter=1000)
+    solution_strategies = FP(akq_game.tree,n_iter=100000)
 
     print("Done running akq xfp")
 
 ########################################
 ## Run MCTS akq tree. Version: regular #
 ########################################
-run_mcts_akq_regular = 0
+run_mcts_akq_regular = 1
 if run_mcts_akq_regular:
 
     tree = Tree.Tree()
@@ -197,7 +197,7 @@ if run_mcts_akq_regular:
 ########################################
 ## Run MCTS mixed. Version: small #
 ########################################
-run_mcts_akq_regular = 1
+run_mcts_akq_regular = 0
 if run_mcts_akq_regular:
 
     tree = Tree.Tree()
@@ -234,7 +234,6 @@ if run_mcts_akq_regular:
     AKQGraph.graph.render('/Users/befeltingu/GameTheory/Results/Poker/MCTS/img/akq_extended')
 
     strategy_profile = GameState.run(1000)
-
     p1_ev_matrix = []
 
     for node in GameState.player1.info_tree.nodes:

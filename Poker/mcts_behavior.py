@@ -232,7 +232,9 @@ class MCTSStrategyProfile:
         :return:
         '''
 
+        hand = akq_util.get_hand_string(hand)
 
+        r1[hand] +=  update_amount * direction
 
     def get_starting_range(self,player):
 
@@ -731,6 +733,9 @@ class AKQMixedMcts(object):
         if player_reward == 0.0:
 
             direction = -1
+
+        if u_i.node_index == 2:
+            print("node 2")
 
         update_amount = self.strat_profile.get_update_fraction(self.strat_profile.ranges[next_state_index],current_player.current_hand,n,direction)
 

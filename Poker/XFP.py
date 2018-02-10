@@ -34,6 +34,7 @@ import numpy as np
 
 
 AQK_HANDS = ["A","K","Q"]
+
 AQK_HAND_NUMS = [0,1,2]
 
 class StrategyProfile:
@@ -361,8 +362,9 @@ def calc_max_ev_leaf(dec_pt,strat_pair,hero,villain):
         # assume the same starting stack for both players for the AKQ game
         # ev = (S - cip) + equity*(pot)
 
-        #villain_range = strat_pair.get_recent_range(dec_pt,villain)
-        villain_range = None
+        villain_range = strat_pair.get_recent_range(dec_pt,villain)
+
+        '''villain_range = None
 
         if curr_index == 4:
 
@@ -380,7 +382,9 @@ def calc_max_ev_leaf(dec_pt,strat_pair,hero,villain):
             else:
                 villain_range = strat_pair.ranges[3]
 
-        print('hey')
+        '''
+
+        #print('hey')
 
         for hand in AQK_HANDS:
 
@@ -388,7 +392,7 @@ def calc_max_ev_leaf(dec_pt,strat_pair,hero,villain):
 
             hand_quity = hand_v_range_equity(hand,villain_range)
 
-            ev = (strat_pair.get_player_starting_stack(hero) - strat_pair.get_player_cip(dec_pt,hero)) + hand_quity*(1 + dec_pt.SB_cip + dec_pt.BB_cip)
+            ev = (strat_pair.get_player_starting_stack(hero) - strat_pair.get_player_cip(dec_pt,hero)) + hand_quity*(2 + dec_pt.SB_cip + dec_pt.BB_cip)
 
             strat_pair.ev[hero][curr_index][hand_number] = ev
 
@@ -398,7 +402,7 @@ def calc_max_ev_leaf(dec_pt,strat_pair,hero,villain):
 
             # ev = (StartStack + villain cip)
 
-            ev = strat_pair.get_player_starting_stack(hero) + strat_pair.get_player_cip(dec_pt,villain) + 1
+            ev = strat_pair.get_player_starting_stack(hero) + strat_pair.get_player_cip(dec_pt,villain) + 2
 
             strat_pair.ev[hero][curr_index] = np.ones_like(strat_pair.ev[hero][curr_index])*ev
 
@@ -494,6 +498,44 @@ def calc_max_villain(dec_pt,strat_pair,hero,villain):
 ##########################
 ### AKQ UTIL FUNCTIONS ###
 ##########################
+
+def hand_v_range_equity_num(hand,range):
+    '''
+    same as hand_v_range_equity but hand is passed as an int
+    :param hand:
+    :param range:
+    :return:
+    '''
+
+    range_total = 0
+
+    equity = 0
+
+    hand = get_hand_number(hand)
+
+    for hand_villain in list(range.keys()):
+
+        range_total += range[hand_villain]
+
+    for hand_villain in list(range.keys()):
+
+        hand_villain_num = get_hand_number(hand_villain)
+
+        if hand < hand_villain_num:
+
+            equity += range[hand_villain]
+
+        elif hand == hand_villain_num:
+
+            equity += 0.5*range[hand_villain]
+
+        elif hand > hand_villain_num:
+            continue
+
+        else:
+            "Error in hand_v_range_equity_num incorrect hand representation"
+
+    return equity / range_total
 
 def hand_v_range_equity(hand,range):
     '''
@@ -602,8 +644,8 @@ def FP(tree,n_iter):
         # Now update each
         #strategy_profile.update_strategy_profile(best_response_profile,j)
 
-        if (j % 100) == 0:
-            print('hey')
+        #if (j % 1000) == 0:
+            #print('hey')
 
         j+=1
 
