@@ -383,7 +383,7 @@ class ExtensiveFormMCTS(object):
         N(u,a) += 1
         Q(u,a) += (r - Q(u,a)) / N(u,a)
         '''
-        pass
+        passf
 
 class AKQPlayer(object):
 
@@ -680,7 +680,11 @@ class AKQMixedMcts(object):
 
         if s.is_leaf == True:
 
-            return self.reward(s)
+            reward = self.reward(s)
+
+            self.update(s,reward,i)
+
+            return reward
 
         current_player = self.player1 if s.player == "SB" else self.player2
 
@@ -690,11 +694,11 @@ class AKQMixedMcts(object):
 
         r = self.simulate(next_state,i)
 
-        self.update(current_player,s,action,r,i)
+        self.update(s,r,i)
 
         return r
 
-    def update(self,current_player,u_i, a, r,n):
+    def update(self,u_i, r,n):
 
         '''
         N(u_i) += 1
@@ -702,14 +706,16 @@ class AKQMixedMcts(object):
         Q(u,a) += (r - Q(u,a)) / N(u,a)
         '''
 
-        if u_i.node_index == 0:
+        if u_i.node_index == 0 or u_i.node_index == 1:
             return
+
+        current_player = self.player1 if u_i.parent.player == "SB" else self.player2
 
         player_reward = r[current_player.name]
 
-        next_states = self.get_new_state(u_i,a)
+        #next_states = self.get_new_state(u_i,a)
 
-        if len(next_states) > 1:
+        '''if len(next_states) > 1:
 
             next_state,other_child = next_states[0],next_states[1]
 
@@ -726,7 +732,7 @@ class AKQMixedMcts(object):
 
         update = (player_reward - current_ev)/current_count
 
-        self.strat_profile.policy[current_player.name][next_state_index]['ev'][current_player.current_hand] += update
+        self.strat_profile.policy[current_player.name][next_state_index]['ev'][current_player.current_hand] += update'''
 
         direction = player_reward / np.abs(player_reward) # if player_reward < 0 -> direction = -1
 
@@ -737,13 +743,18 @@ class AKQMixedMcts(object):
         if u_i.node_index == 2:
             print("node 2")
 
-        update_amount = self.strat_profile.get_update_fraction(self.strat_profile.ranges[next_state_index],current_player.current_hand,n,direction)
+        update_amount = self.strat_profile.get_update_fraction(self.strat_profile.ranges[u_i.node_index],current_player.current_hand,n,direction)
 
-        self.strat_profile.update_range_basic(self.strat_profile.ranges[next_state_index],current_player.current_hand,update_amount,direction)
+        self.strat_profile.update_range_basic(self.strat_profile.ranges[u_i.node_index],current_player.current_hand,update_amount,direction)
 
-        if other_child:
+        children = u_i.parent.children
 
-            self.strat_profile.update_range_basic(self.strat_profile.ranges[other_child.node_index],current_player.current_hand,update_amount,-direction)
+        for child in children:
+
+            if child.action != u_i.action:
+                # now update the other child in the opposite direction
+                self.strat_profile.update_range_basic(self.strat_profile.ranges[child.node_index],
+                                                      current_player.current_hand, update_amount, -direction)
 
     def run(self,num_iterations):
 

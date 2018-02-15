@@ -55,9 +55,9 @@
 
 import random
 import numpy as np
-#from RL.MCTS.Model import MCTS
 from Util.node import InfoNode,PokerNode
 from Util.tree import InfoTree
+#from RL.MCTS.Model import MCTS
 
 class ExtensiveFormMCTS(object):
     '''
@@ -149,6 +149,7 @@ class AKQPlayer(object):
         self.starting_stack = starting_stack
 
 class AKQGameState(object):
+
     '''
     class used for simulating a simple AKQ poker game
     The game state needs to deal random cards to each player
@@ -432,7 +433,7 @@ class AKQGameState(object):
         else:
             return {current_max_action:1}
 
-    def simulate(self,s):
+    def simulate(self,s,num_iterations):
 
         self.iter_count += 1
 
@@ -532,7 +533,6 @@ class AKQGameState(object):
         update = (player_reward - current_ev)/current_count
 
         current_player.policy[u_i.node_index][list(a.keys())[0]]['ev'] += update
-
 
     def run(self,num_iterations):
 

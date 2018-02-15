@@ -112,7 +112,7 @@ if run_akq_xfp:
 ########################################
 ## Run MCTS akq tree. Version: regular #
 ########################################
-run_mcts_akq_regular = 1
+run_mcts_akq_regular = 0
 if run_mcts_akq_regular:
 
     tree = Tree.Tree()
@@ -197,7 +197,7 @@ if run_mcts_akq_regular:
 ########################################
 ## Run MCTS mixed. Version: small #
 ########################################
-run_mcts_akq_regular = 0
+run_mcts_akq_regular = 1
 if run_mcts_akq_regular:
 
     tree = Tree.Tree()
