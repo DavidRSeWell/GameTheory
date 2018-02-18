@@ -1,6 +1,7 @@
 from Poker.XFP import StrategyProfile,FP
 from Poker.mcts_akq import AKQGameState
 from Poker.mcts_behavior import AKQMixedMcts,MCTSStrategyProfile
+from Poker.NFSP_simple import NFSPSimple
 from Graph.graph_tree import TreeGraph
 import graphviz as gv
 import pandas as pd
@@ -194,10 +195,10 @@ if run_mcts_akq_regular:
 
     ev_df_2.to_csv('/Users/befeltingu/GameTheory/Results/Poker/MCTS/data/ev_2.csv')
 
-########################################
-## Run MCTS mixed. Version: small #
-########################################
-run_mcts_akq_regular = 1
+####################################
+## Run MCTS mixed. Version: small  #
+####################################
+run_mcts_akq_regular = 0
 if run_mcts_akq_regular:
 
     tree = Tree.Tree()
@@ -275,4 +276,37 @@ if run_mcts_akq_regular:
     ev_df_1.to_csv('/Users/befeltingu/GameTheory/Results/Poker/MCTS/data/ev_1.csv')
 
     ev_df_2.to_csv('/Users/befeltingu/GameTheory/Results/Poker/MCTS/data/ev_2.csv')
+
+####################################
+## Run NFSP simple  #
+####################################
+run_nfsp_simple = 1
+if run_nfsp_simple:
+
+    tree = Tree.Tree()
+
+    players = ["SB", "BB"]
+
+    init_SB_cip = 0.0
+    init_BB_cip = 0.0
+
+    akq_game = Game.GameState(tree=tree, players=players, name='akq_game')
+
+    akq_game.set_root(players[0], init_SB_cip, init_BB_cip)
+
+    root = akq_game.tree.get_root()
+
+    akq_game.new_action(current_index=0, player="SB", action={"check": 0})
+
+    akq_game.new_action(current_index=1, player="BB", action={"bet": 1})
+    akq_game.new_action(current_index=1, player="BB", action={"check": 0})
+
+    akq_game.new_action(current_index=2, player="SB", action={"call": 1})
+    akq_game.new_action(current_index=2, player="SB", action={"fold": 0})
+
+    nfsp_simple = NFSPSimple(tree)
+
+    policy = nfsp_simple.run(1000)
+
+    print("done running nfsp simple")
 

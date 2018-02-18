@@ -33,6 +33,8 @@ class PokerNode(object):
 
         self.BB_cip = BB_cip
 
+        self.count = 0 # used in tree search alogrithm to track number of visits
+
 class InfoNode(object):
 
     '''
