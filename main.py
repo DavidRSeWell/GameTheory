@@ -306,7 +306,7 @@ if run_nfsp_simple:
 
     nfsp_simple = NFSPSimple(tree)
 
-    policy = nfsp_simple.run(1000)
+    policy = nfsp_simple.run(100)
 
     print("done running nfsp simple")
 

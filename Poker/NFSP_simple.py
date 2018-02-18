@@ -463,11 +463,13 @@ class NFSPSimple:
         next_state = self.get_new_state(s, action)
 
         self.count_lookup[s.player][s.node_index][current_player.current_hand] += 1
+
         self.count_lookup[s.player][next_state.node_index][current_player.current_hand] += 1
 
         current_s_count = self.count_lookup[s.player][s.node_index][current_player.current_hand]
 
         for child in s.children:
+
             for hand in self.deck:
 
                 child_count = self.count_lookup[s.player][child.node_index][hand]

@@ -225,7 +225,6 @@ class AKQGameState(object):
 
             return NewInfoNode
 
-
         # need to make a copy of the parent cannot pass as reference
 
         new_parent = PokerNode(s.parent.player,parent=s.parent.parent,SB_cip=s.parent.SB_cip,BB_cip=s.parent.BB_cip,action=s.parent.action)
