@@ -113,7 +113,7 @@ if run_akq_xfp:
 ########################################
 ## Run MCTS akq tree. Version: regular #
 ########################################
-run_mcts_akq_regular = 0
+run_mcts_akq_regular = 1
 if run_mcts_akq_regular:
 
     tree = Tree.Tree()
@@ -129,17 +129,13 @@ if run_mcts_akq_regular:
 
     root = akq_game.tree.get_root()
 
-    akq_game.new_action(current_index=0, player="SB", action={"bet": 1})
     akq_game.new_action(current_index=0, player="SB", action={"check": 0})
 
-    akq_game.new_action(current_index=1, player="BB", action={"call": 1})
-    akq_game.new_action(current_index=1, player="BB", action={"fold": 0})
+    akq_game.new_action(current_index=1, player="BB", action={"bet": 1})
+    akq_game.new_action(current_index=1, player="BB", action={"check": 0})
 
-    akq_game.new_action(current_index=2, player="BB", action={"bet": 1})
-    akq_game.new_action(current_index=2, player="BB", action={"check": 0})
-
-    akq_game.new_action(current_index=5, player="SB", action={"call": 1})
-    akq_game.new_action(current_index=5, player="SB", action={"fold": 0})
+    akq_game.new_action(current_index=2, player="SB", action={"call": 1})
+    akq_game.new_action(current_index=2, player="SB", action={"fold": 0})
 
     GameState = AKQGameState(tree)
 
@@ -235,6 +231,7 @@ if run_mcts_akq_regular:
     AKQGraph.graph.render('/Users/befeltingu/GameTheory/Results/Poker/MCTS/img/akq_extended')
 
     strategy_profile = GameState.run(1000)
+
     p1_ev_matrix = []
 
     for node in GameState.player1.info_tree.nodes:
@@ -280,7 +277,7 @@ if run_mcts_akq_regular:
 ####################################
 ## Run NFSP simple  #
 ####################################
-run_nfsp_simple = 1
+run_nfsp_simple = 0
 if run_nfsp_simple:
 
     tree = Tree.Tree()
@@ -306,7 +303,47 @@ if run_nfsp_simple:
 
     nfsp_simple = NFSPSimple(tree)
 
-    policy = nfsp_simple.run(100)
+    policy,sb_DQN,bb_DQN = nfsp_simple.run(250)
+
+    replay_data_df = pd.DataFrame(nfsp_simple.rl_replay)
+
+    max_action_final = {"SB": { "A":None,"K":None,"Q":None}, "BB": { "A":None,"K":None,"Q":None}}
+
+
+    for hand in [0,1,2]:
+
+        nfsp_simple.player1.current_hand = hand
+
+        current_state = nfsp_simple.get_state_from_node(nfsp_simple.tree.nodes[2],nfsp_simple.player1)
+
+        valid_actions = [2,3] # bet and check
+
+        max_action = sb_DQN.act(current_state,valid_actions)[0]
+
+        hand_string = nfsp_simple.get_hand_string(hand)
+
+        max_action_final["SB"][hand_string] = max_action
+
+
+    for hand in [0,1,2]:
+
+        nfsp_simple.player2.current_hand = hand
+
+        current_state = nfsp_simple.get_state_from_node(nfsp_simple.tree.nodes[1], nfsp_simple.player2)
+
+        valid_actions = [0, 1]  # bet and check
+
+        max_action = bb_DQN.act(current_state, valid_actions)[0]
+
+        hand_string = nfsp_simple.get_hand_string(hand)
+
+        max_action_final["BB"][hand_string] = max_action
+
+
+
+
+
+
 
     print("done running nfsp simple")
 

@@ -53,7 +53,9 @@ class DQNAgent:
         act_values = self.model.predict(state)
 
         for i in range(self.action_size):
+
             if i not in valid_actions:
+
                 act_values[0][i] = -100
 
         return (np.argmax(act_values[0]),'max')  # returns action
@@ -107,6 +109,10 @@ class NFSPSimple:
 
     def __init__(self,tree):
 
+        self.select_action_count = 0
+
+        self.select_max_count = 0
+
         self.tree = tree
 
         self.rl_replay = []
@@ -119,7 +125,7 @@ class NFSPSimple:
 
         self.deck = [0, 1, 2]
 
-        self.behaviour_policy = np.zeros((len(tree.nodes),len(self.deck),len(self.actions)))
+        self.behaviour_policy = np.zeros((2,len(tree.nodes),len(self.deck),len(self.actions)))
 
         self.count_lookup = {'SB':np.zeros((6,3)),'BB':np.zeros((6,3))}
 
@@ -160,12 +166,29 @@ class NFSPSimple:
 
         # init the behaviour policy s.t. the player is equally likely to take an action
         # with every hand in every state
-        for node_index in [1,2]:
-            for hand in self.deck:
-                for action in self.get_possible_action(self.tree.nodes[node_index]):
-                    self.behaviour_policy[node_index][hand][action] = 0.5
+
+        for player in [0,1]:
+
+            for node_index in [1,2]:
+
+                for hand in [0,1,2]:
+
+                    for action in self.get_possible_action(self.tree.nodes[node_index]):
+
+                        self.behaviour_policy[player][node_index][hand][action] = 0.5
 
         print('done init')
+
+    def get_hand_string(self,hand):
+
+        if hand == 0:
+            return "A"
+
+        elif hand == 1:
+            return "K"
+
+        else:
+            return "Q"
 
     def get_hero_villian(self,s):
 
@@ -230,7 +253,7 @@ class NFSPSimple:
 
         villian_cip, hero_cip = self.get_hero_villian_cip(s)
 
-        current_pot = 1.0 + s.SB_cip + s.BB_cip
+        current_pot = 2.0 + s.SB_cip + s.BB_cip
 
         action_type = list(s.action.keys())[0]
 
@@ -293,7 +316,7 @@ class NFSPSimple:
 
         action_matrix = np.zeros((3,4))  # raises x actions matrix
 
-        action_matrix[1][1] = 1
+        action_matrix[0][1] = 1
 
         action_history = []
 
@@ -366,11 +389,15 @@ class NFSPSimple:
         :return:
         '''
 
+        self.select_action_count += 1
+
         actions = self.get_possible_action(s)
+
+        player_index = 0 if player == self.player1 else 1
 
         if self.policy == "current":
 
-            possible_actions = self.behaviour_policy[s.node_index][player.current_hand].copy()
+            possible_actions = self.behaviour_policy[player_index][s.node_index][player.current_hand].copy()
 
             for i in range(len(actions)):
                 if i not in actions:
@@ -390,6 +417,9 @@ class NFSPSimple:
                 dqn_action,type = self.bb_DQN.act(state_vector,actions)
 
             if type == 'max':
+
+                self.select_max_count += 1
+
                 self.update(s,dqn_action)
 
             return dqn_action
@@ -460,23 +490,28 @@ class NFSPSimple:
 
         current_player = self.player1 if s.player == "SB" else self.player2
 
+        player_index = 0 if s.player == "SB" else 1
+
         next_state = self.get_new_state(s, action)
 
         self.count_lookup[s.player][s.node_index][current_player.current_hand] += 1
 
         self.count_lookup[s.player][next_state.node_index][current_player.current_hand] += 1
 
-        current_s_count = self.count_lookup[s.player][s.node_index][current_player.current_hand]
-
         for child in s.children:
 
-            for hand in self.deck:
+            for hand in [0,1,2]:
 
-                child_count = self.count_lookup[s.player][child.node_index][hand]
+                child_count = self.count_lookup[s.player][child.node_index][hand].copy()
+
+                current_parent_count = self.count_lookup[s.player][s.node_index][hand].copy()
+
+                if current_parent_count == 0:
+                    continue
 
                 action_index = self.actions.index(list(child.action.keys())[0])
 
-                self.behaviour_policy[s.node_index][current_player.current_hand][action_index] = child_count / current_s_count
+                self.behaviour_policy[player_index][s.node_index][hand][action_index] = child_count / current_parent_count
 
 
         #action_index = self.actions.index(list(action.keys())[0])
@@ -519,6 +554,8 @@ class NFSPSimple:
 
             s1 = s0.children[0] # start at BB because it is a force check for SB
 
+            self.deck = [0,1,2]
+
             self.simulate(s1, i)
 
             if len(self.sb_DQN.memory) > self.batch_size:
@@ -527,7 +564,7 @@ class NFSPSimple:
             if len(self.bb_DQN.memory) > self.batch_size:
                 self.bb_DQN.replay(self.batch_size)
 
-        return self.behaviour_policy
+        return self.behaviour_policy,self.sb_DQN,self.bb_DQN
 
 
 

@@ -558,7 +558,7 @@ class AKQMixedMcts(object):
 
         villian_cip,hero_cip = self.get_hero_villian_cip(s)
 
-        current_pot = 1.0 + s.SB_cip + s.BB_cip
+        current_pot = 2.0 + s.SB_cip + s.BB_cip
 
         action_type = list(s.action.keys())[0]
 
@@ -600,7 +600,7 @@ class AKQMixedMcts(object):
 
                 r[hero.name] = hero.starting_stack - hero_cip
 
-        return r
+        return rff
 
     def rollout(self,s):
 

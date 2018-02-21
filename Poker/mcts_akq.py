@@ -384,7 +384,7 @@ class AKQGameState(object):
         except Exception as e:
             print("Error at rollout_policy: " + str(e))
 
-    def select_uct(self,u_i,num_iterations):
+    def select_uct(self,u_i):
 
         '''
             select action that maximizes
@@ -432,7 +432,7 @@ class AKQGameState(object):
         else:
             return {current_max_action:1}
 
-    def simulate(self,s,num_iterations):
+    def simulate(self,s):
 
         self.iter_count += 1
 
@@ -462,13 +462,11 @@ class AKQGameState(object):
 
             return self.reward(s)
 
-
         current_player = self.player1 if s.player == "SB" else self.player2
 
         if current_player.out_of_tree == True:
 
             return self.rollout(s)
-
 
         infostate = self.get_info_state(current_player,s)
 
@@ -494,7 +492,6 @@ class AKQGameState(object):
 
                 current_player.policy[infostate.node_index][new_action]['ev'] = 0
 
-
         else:
 
             infostate = current_player.info_tree.get_tree_node(infostate)
@@ -511,7 +508,7 @@ class AKQGameState(object):
 
         return r
 
-    def update(self,current_player,u_i, a, r,num_iter):
+    def update(self,current_player,u_i, a, r):
 
         '''
         N(u_i) += 1
@@ -559,7 +556,7 @@ class AKQGameState(object):
 
             s0 = self.game_tree.get_root()
 
-            self.simulate(s0,num_iterations)
+            self.simulate(s0)
 
 
         return [self.player1.policy,self.player2.policy]
