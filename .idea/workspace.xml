@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fb944ddb-e3e2-4a7d-801f-00326065ea59" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Poker/NFSP_simple.py" afterPath="$PROJECT_DIR$/Poker/NFSP_simple.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Poker/mcts_akq.py" afterPath="$PROJECT_DIR$/Poker/mcts_akq.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SmallGames/rock_paper_scissors.py" afterPath="$PROJECT_DIR$/SmallGames/rock_paper_scissors.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
     </list>
     <ignored path="GameTheory.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,7 +23,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="871">
@@ -46,28 +43,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mcts_akq.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mcts_akq.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Poker/mcts_akq.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="492" column="0" selection-start-line="492" selection-start-column="0" selection-end-line="492" selection-end-column="0" />
+            <state relative-caret-position="136">
+              <caret line="152" column="7" selection-start-line="152" selection-start-column="7" selection-end-line="152" selection-end-column="7" />
               <folding>
                 <element signature="e#43#833#1" expanded="false" />
                 <element signature="e#1010#2623#0" expanded="false" />
-                <element signature="e#4606#4637#0" expanded="false" />
-                <element signature="e#4684#4806#0" expanded="false" />
-                <element signature="e#5198#5321#0" expanded="false" />
-                <element signature="e#5380#6494#0" expanded="false" />
-                <element signature="e#6538#6919#0" expanded="false" />
-                <element signature="e#6966#7186#0" expanded="false" />
-                <element signature="e#7221#8806#0" expanded="false" />
-                <element signature="e#7875#8297#0" expanded="false" />
-                <element signature="e#8366#8788#0" expanded="false" />
-                <element signature="e#8842#9218#0" expanded="false" />
-                <element signature="e#9261#9704#0" expanded="false" />
-                <element signature="e#11760#14042#0" expanded="false" />
-                <element signature="e#14102#15072#0" expanded="false" />
-                <marker date="1519532476000" expanded="false" signature="4841:5148" ph="..." />
+                <element signature="e#2655#2906#0" expanded="false" />
+                <element signature="e#3152#3540#0" expanded="false" />
+                <element signature="e#3576#4582#0" expanded="false" />
+                <element signature="e#4618#4649#0" expanded="false" />
+                <element signature="e#4696#4818#0" expanded="false" />
+                <element signature="e#5210#5333#0" expanded="false" />
+                <element signature="e#5392#6506#0" expanded="false" />
+                <element signature="e#6550#6931#0" expanded="false" />
+                <element signature="e#6978#7198#0" expanded="false" />
+                <element signature="e#7233#8818#0" expanded="false" />
+                <element signature="e#7887#8309#0" expanded="false" />
+                <element signature="e#8378#8800#0" expanded="false" />
+                <element signature="e#8854#9230#0" expanded="false" />
+                <element signature="e#9273#9716#0" expanded="false" />
+                <element signature="e#9757#11735#0" expanded="false" />
+                <element signature="e#11772#14054#0" expanded="false" />
+                <element signature="e#14114#15084#0" expanded="false" />
+                <element signature="e#15129#15737#0" expanded="false" />
+                <marker date="1519587895000" expanded="false" signature="4853:5160" ph="..." />
               </folding>
             </state>
           </provider>
@@ -158,14 +160,15 @@
         <option value="$PROJECT_DIR$/Poker/mcts_behavior.py" />
         <option value="$PROJECT_DIR$/SmallGames/rock_paper_scissors.py" />
         <option value="$PROJECT_DIR$/Poker/NFSP_simple.py" />
-        <option value="$PROJECT_DIR$/Poker/mcts_akq.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/Poker/mcts_akq.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="x" value="1440" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -207,34 +210,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="GameTheory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GameTheory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GameTheory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GameTheory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GameTheory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SmallGames" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -549,14 +524,21 @@
       <option name="project" value="LOCAL" />
       <updated>1519244965029</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="mcts_akq for the simple AKQ model we finally saw a convergence toward NE!!!!! It works!!!">
+      <created>1519532726154</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1519532726154</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
+    <frame x="1440" y="0" width="1920" height="1080" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16349542" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12216956" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -565,7 +547,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26024097" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21386139" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -602,7 +584,8 @@
     <MESSAGE value="NSFP is running but currently the behavior policy is being updated incorrectly somehow. Have actions with &gt; 100% change" />
     <MESSAGE value="Commiting before moving NSFP to using information nodes instead of trying to explicitly represent state in matrix form." />
     <MESSAGE value="Cant get NFSP to work. I dont know if I am correctly storing the reward transition." />
-    <option name="LAST_COMMIT_MESSAGE" value="Cant get NFSP to work. I dont know if I am correctly storing the reward transition." />
+    <MESSAGE value="mcts_akq for the simple AKQ model we finally saw a convergence toward NE!!!!! It works!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="mcts_akq for the simple AKQ model we finally saw a convergence toward NE!!!!! It works!!!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1417,31 +1400,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Poker/mcts_akq.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="492" column="0" selection-start-line="492" selection-start-column="0" selection-end-line="492" selection-end-column="0" />
-          <folding>
-            <element signature="e#43#833#1" expanded="false" />
-            <element signature="e#1010#2623#0" expanded="false" />
-            <element signature="e#4606#4637#0" expanded="false" />
-            <element signature="e#4684#4806#0" expanded="false" />
-            <element signature="e#5198#5321#0" expanded="false" />
-            <element signature="e#5380#6494#0" expanded="false" />
-            <element signature="e#6538#6919#0" expanded="false" />
-            <element signature="e#6966#7186#0" expanded="false" />
-            <element signature="e#7221#8806#0" expanded="false" />
-            <element signature="e#7875#8297#0" expanded="false" />
-            <element signature="e#8366#8788#0" expanded="false" />
-            <element signature="e#8842#9218#0" expanded="false" />
-            <element signature="e#9261#9704#0" expanded="false" />
-            <element signature="e#11760#14042#0" expanded="false" />
-            <element signature="e#14102#15072#0" expanded="false" />
-            <marker date="1519532476000" expanded="false" signature="4841:5148" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Results/Poker/MCTS/img/akq_extended.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1461,6 +1419,36 @@
             <element signature="e#5926#8101#0" expanded="false" />
             <element signature="e#7528#7889#0" expanded="false" />
             <marker date="1519532576000" expanded="false" signature="8238:10250" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Poker/mcts_akq.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="152" column="7" selection-start-line="152" selection-start-column="7" selection-end-line="152" selection-end-column="7" />
+          <folding>
+            <element signature="e#43#833#1" expanded="false" />
+            <element signature="e#1010#2623#0" expanded="false" />
+            <element signature="e#2655#2906#0" expanded="false" />
+            <element signature="e#3152#3540#0" expanded="false" />
+            <element signature="e#3576#4582#0" expanded="false" />
+            <element signature="e#4618#4649#0" expanded="false" />
+            <element signature="e#4696#4818#0" expanded="false" />
+            <element signature="e#5210#5333#0" expanded="false" />
+            <element signature="e#5392#6506#0" expanded="false" />
+            <element signature="e#6550#6931#0" expanded="false" />
+            <element signature="e#6978#7198#0" expanded="false" />
+            <element signature="e#7233#8818#0" expanded="false" />
+            <element signature="e#7887#8309#0" expanded="false" />
+            <element signature="e#8378#8800#0" expanded="false" />
+            <element signature="e#8854#9230#0" expanded="false" />
+            <element signature="e#9273#9716#0" expanded="false" />
+            <element signature="e#9757#11735#0" expanded="false" />
+            <element signature="e#11772#14054#0" expanded="false" />
+            <element signature="e#14114#15084#0" expanded="false" />
+            <element signature="e#15129#15737#0" expanded="false" />
+            <marker date="1519587895000" expanded="false" signature="4853:5160" ph="..." />
           </folding>
         </state>
       </provider>

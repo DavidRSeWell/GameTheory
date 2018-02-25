@@ -151,9 +151,9 @@ class AKQPlayer(object):
 class AKQGameState(object):
 
     '''
-    class used for simulating a simple AKQ poker game
-    The game state needs to deal random cards to each player
-    and to track the button
+        class used for simulating a simple AKQ poker game
+        The game state needs to deal random cards to each player
+        and to track the button
     '''
 
     def __init__(self,game_tree):
