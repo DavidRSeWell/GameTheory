@@ -21,7 +21,7 @@ class DQNAgent:
         self.state_size = state_size
         self.action_size = action_size
         self.memory = deque(maxlen=2000)
-        self.gamma = 0.95  # discount rate
+        self.gamma = 1  # discount rate
         self.epsilon = 1.0  # exploration rate
         self.epsilon_min = 0.01
         self.epsilon_decay = 0.995
@@ -70,8 +70,13 @@ class DQNAgent:
 
             if not done:
 
+                predict_next = self.model.predict(next_state)[0]
+
+                predict_next[2] = -100
+                predict_next[3] = -100
+
                 target = (reward + self.gamma *
-                          np.amax(self.model.predict(next_state)[0]))
+                          np.amax(predict_next))
 
             target_f = self.model.predict(state)
 
@@ -115,8 +120,6 @@ class NFSPSimple:
 
         self.tree = tree
 
-        self.rl_replay = []
-
         self.actions = ["bet","check","call","fold"]
 
         self.sb_DQN = None
@@ -127,7 +130,7 @@ class NFSPSimple:
 
         self.behaviour_policy = np.zeros((2,len(tree.nodes),len(self.deck),len(self.actions)))
 
-        self.count_lookup = {'SB':np.zeros((6,3)),'BB':np.zeros((6,3))}
+        self.count_lookup = {'SB':np.zeros((5,3)),'BB':np.zeros((5,3))}
 
         self.anticipatory_paramter = 0.1
 
@@ -138,6 +141,10 @@ class NFSPSimple:
         self.policy = None
 
         self.batch_size = 8
+
+        self.replay_list = []
+
+        self.scale_reward = 0.25
 
         self.init()
 
@@ -156,9 +163,9 @@ class NFSPSimple:
 
         self.player2 = AKQPlayer(name="BB", info_tree=None, starting_stack=1)
 
-        sb_dqn = DQNAgent(17,4)
+        sb_dqn = DQNAgent(13,4)
 
-        bb_dqn = DQNAgent(17,4)
+        bb_dqn = DQNAgent(13,4)
 
         self.sb_DQN = sb_dqn
 
@@ -169,7 +176,7 @@ class NFSPSimple:
 
         for player in [0,1]:
 
-            for node_index in [1,2]:
+            for node_index in [0,1]:
 
                 for hand in [0,1,2]:
 
@@ -198,7 +205,7 @@ class NFSPSimple:
         :return: []
         '''
 
-        if s.parent.player != "SB":
+        if s.parent.player == "SB":
 
             return [self.player1,self.player2]
 
@@ -209,9 +216,10 @@ class NFSPSimple:
     def get_hero_villian_cip(self, s):
 
         if s.parent.player == "SB":
+
             return [s.SB_cip, s.BB_cip]
 
-        if s.parent.player == "BB":
+        else:
             return [s.BB_cip, s.SB_cip]
 
     def get_new_state(self, s, a):
@@ -249,9 +257,9 @@ class NFSPSimple:
 
         r = {"SB": 0, "BB": 0}
 
-        villian, hero = self.get_hero_villian(s)
+        hero, villian = self.get_hero_villian(s)
 
-        villian_cip, hero_cip = self.get_hero_villian_cip(s)
+        hero_cip,villian_cip = self.get_hero_villian_cip(s)
 
         current_pot = 2.0 + s.SB_cip + s.BB_cip
 
@@ -259,9 +267,9 @@ class NFSPSimple:
 
         if action_type == "fold":
             # the parent folded so the current player gets the pot
-            r[villian.name] = villian.starting_stack - villian_cip
+            r[hero.name] = hero.starting_stack - hero_cip
 
-            r[hero.name] = current_pot + (hero.starting_stack - hero_cip)
+            r[villian.name] = current_pot + (villian.starting_stack - villian_cip)
 
 
         elif action_type == "check":
@@ -295,6 +303,10 @@ class NFSPSimple:
 
                 r[hero.name] = hero.starting_stack - hero_cip
 
+
+        r["SB"] *= self.scale_reward
+        r["BB"] *= self.scale_reward
+
         return r
 
     def get_state_from_node(self,s,player):
@@ -314,36 +326,37 @@ class NFSPSimple:
 
             curr_player = np.array([0,1])
 
-        action_matrix = np.zeros((3,4))  # raises x actions matrix
+        action_matrix = np.zeros((2,4))  # raises x actions matrix
 
-        action_matrix[0][1] = 1
+        if s.node_index != 0:
 
-        action_history = []
+            action_history = []
 
-        curr_node = s
+            curr_node = s
 
-        curr_action = list(curr_node.action.keys())[0]
+            curr_action = list(curr_node.action.keys())[0]
 
-        while True:
+            while True:
 
-            if curr_node.node_index == 1:
-                break
+                if curr_node.node_index == 0:
+                    break
 
-            if curr_node.node_index in [2,3]:
+                if curr_node.node_index in [1,2]:
 
-                a_index = self.actions.index(curr_action)
+                    a_index = self.actions.index(curr_action)
 
-                action_matrix[1][a_index] = 1
+                    action_matrix[0][a_index] = 1
 
-            elif curr_node.node_index in [4,5]:
+                elif curr_node.node_index in [3,4]:
 
-                a_index = self.actions.index(curr_action)
+                    a_index = self.actions.index(curr_action)
 
-                action_matrix[2][a_index] = 1
+                    action_matrix[1][a_index] = 1
 
-            action_history.insert(0,curr_action)
+                action_history.insert(0,curr_action)
 
-            curr_node = curr_node.parent
+                curr_node = curr_node.parent
+
 
         action_flattened = action_matrix.flatten()
 
@@ -357,7 +370,7 @@ class NFSPSimple:
 
         state = np.concatenate((state,hand_array))
 
-        state = np.reshape(state,[1,17])
+        state = np.reshape(state,[1,13])
 
         return state
 
@@ -426,17 +439,21 @@ class NFSPSimple:
 
     def store_transition(self,current_player,s,action,r,next_state):
 
+        opponent = self.player1 if current_player == self.player2 else self.player2
+
         current_state_vector = self.get_state_from_node(s,current_player)
 
-        next_state_vector = self.get_state_from_node(next_state,current_player)
+        next_state_vector = self.get_state_from_node(next_state,opponent)
+
+        self.replay_list.append([current_player.name,s.node_index,self.actions[action],self.get_hand_string(current_player.current_hand),r,self.get_hand_string(opponent.current_hand)])
 
         if s.player == "SB":
 
-            self.sb_DQN.remember(current_state_vector,action,r,next_state_vector,s.is_leaf)
+            self.sb_DQN.remember(current_state_vector,action,r,next_state_vector,next_state.is_leaf)
 
         elif s.player == "BB":
 
-            self.bb_DQN.remember(current_state_vector,action,r,next_state_vector,s.is_leaf)
+            self.bb_DQN.remember(current_state_vector,action,r,next_state_vector,next_state.is_leaf)
 
         else:
             print("Error incorrect player defined on node: store_transition")
@@ -478,9 +495,14 @@ class NFSPSimple:
 
         r = self.simulate(next_state, i)
 
-        self.store_transition(current_player,s,action,r[s.player],next_state)
+        self.store_transition(current_player, s, action, r[s.player], next_state)
 
-        #self.update(s,next_state,action)
+        '''if next_state.is_leaf:
+
+            self.store_transition(current_player,s,action,r[s.player],next_state)
+        else:
+            self.store_transition(current_player,s,action,0,next_state)
+        '''
 
         return r
 
@@ -552,11 +574,9 @@ class NFSPSimple:
 
             s0 = self.tree.get_root()
 
-            s1 = s0.children[0] # start at BB because it is a force check for SB
-
             self.deck = [0,1,2]
 
-            self.simulate(s1, i)
+            self.simulate(s0, i)
 
             if len(self.sb_DQN.memory) > self.batch_size:
                 self.sb_DQN.replay(self.batch_size)

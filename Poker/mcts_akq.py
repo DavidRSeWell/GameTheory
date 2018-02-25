@@ -168,11 +168,68 @@ class AKQGameState(object):
 
         self.game_tree = game_tree # the full game tree for for the information trees to reference
 
+        self.replay_data = []
+
+        self.adaptive_constant  = 0.8
+
+        self.behavior_policy = {
+            "SB": {},
+            "BB":{}
+        }
+
         self.init_game()
+
+    def init_game(self):
+
+        SB_tree = InfoTree() # info tree
+
+        chance_node = PokerNode(player="chance",SB_cip=0.0,BB_cip=0.0)
+
+        SB_tree.set_root(chance_node)
+
+        BB_tree = InfoTree() # info tree
+
+        game_root = self.game_tree.get_root()
+
+        BB_root_node = PokerNode(game_root.player,SB_cip=0,BB_cip=0)
+
+        BB_tree.set_root(BB_root_node)
+
+        self.player1 = AKQPlayer(name="SB",info_tree=SB_tree,starting_stack=1)
+
+        self.player2 = AKQPlayer(name="BB",info_tree=BB_tree,starting_stack=1)
+
+        self.player1.policy[0] = {}
+
+        self.player2.policy[0] = {}
+
+        for curr_node in self.game_tree.nodes:
+
+            if curr_node.player == 'Leaf':
+                continue
+
+            actions = [list(node.action.keys())[0] for node in curr_node.children]
+
+            self.behavior_policy[curr_node.player][curr_node.node_index] = {}
+
+            for action in actions:
+
+                self.behavior_policy[curr_node.player][curr_node.node_index][action] = {'A':0.0,'K':0.0,'Q':0.0}
 
     def deal_hand(self):
 
         return random.choice(self.deck)
+
+    def get_hand_string(self,hand):
+
+        if hand == 3:
+            return "A"
+
+        elif hand == 2:
+            return "K"
+
+        else:
+            return "Q"
 
     def get_hero_villian(self,s):
 
@@ -182,7 +239,7 @@ class AKQGameState(object):
         :return: []
         '''
 
-        if s.parent.player != "SB":
+        if s.parent.player == "SB":
 
             return [self.player1,self.player2]
 
@@ -190,15 +247,14 @@ class AKQGameState(object):
 
             return [self.player2,self.player1]
 
-    def get_hero_villian_cip(self,s):
+    def get_hero_villian_cip(self, s):
 
         if s.parent.player == "SB":
 
-            return [s.SB_cip,s.BB_cip]
+            return [s.SB_cip, s.BB_cip]
 
-        if s.parent.player == "BB":
-
-            return [s.BB_cip,s.SB_cip]
+        else:
+            return [s.BB_cip, s.SB_cip]
 
     def get_info_state(self,current_player, s):
 
@@ -262,30 +318,6 @@ class AKQGameState(object):
 
         raise Exception("g_child_info parent does not have child with action: " + str(a))
 
-    def init_game(self):
-
-        SB_tree = InfoTree() # info tree
-
-        chance_node = PokerNode(player="chance",SB_cip=0.0,BB_cip=0.0)
-
-        SB_tree.set_root(chance_node)
-
-        BB_tree = InfoTree() # info tree
-
-        game_root = self.game_tree.get_root()
-
-        BB_root_node = PokerNode(game_root.player,SB_cip=0,BB_cip=0)
-
-        BB_tree.set_root(BB_root_node)
-
-        self.player1 = AKQPlayer(name="SB",info_tree=SB_tree,starting_stack=1)
-
-        self.player2 = AKQPlayer(name="BB",info_tree=BB_tree,starting_stack=1)
-
-        self.player1.policy[0] = {}
-
-        self.player2.policy[0] = {}
-
     def reward(self,s):
 
         '''
@@ -298,19 +330,19 @@ class AKQGameState(object):
 
         r = {"SB":0,"BB":0}
 
-        villian,hero = self.get_hero_villian(s)
+        hero, villian = self.get_hero_villian(s)
 
-        villian_cip,hero_cip = self.get_hero_villian_cip(s)
+        hero_cip, villian_cip = self.get_hero_villian_cip(s)
 
-        current_pot = 1.0 + s.SB_cip + s.BB_cip
+        current_pot = 2.0 + s.SB_cip + s.BB_cip
 
         action_type = list(s.action.keys())[0]
 
         if action_type == "fold":
             # the parent folded so the current player gets the pot
-            r[villian.name] = villian.starting_stack - villian_cip
+            r[hero.name] = hero.starting_stack - hero_cip
 
-            r[hero.name] = current_pot + (hero.starting_stack - hero_cip)
+            r[villian.name] = current_pot + (villian.starting_stack - villian_cip)
 
 
         elif action_type == "check":
@@ -388,55 +420,88 @@ class AKQGameState(object):
 
         '''
             select action that maximizes
-            Q(u,a) + c sqrt( log(N(u))/N(u,a) )
 
+            if random U [0,1] < mu
+
+                Q(u,a) + c sqrt( log(N(u))/N(u,a) )
+
+            else
+                policy = N(u,a) / N(u)
+                return a ~ p
         '''
 
         N_U = u_i.visit_count
 
-        if N_U == 0:
-            print("Visit count = 0!")
+        if (np.random.random() < self.adaptive_constant):
 
-        current_max_action = None
+            if N_U == 0:
+                print("Visit count = 0!")
 
-        current_max = -1
+            current_max_action = None
 
-        current_player = self.player1 if u_i.player == "SB" else self.player2
+            current_max = -1
 
-        info_policy = current_player.policy[u_i.node_index]
+            current_player = self.player1 if u_i.player == "SB" else self.player2
 
-        for action in info_policy.keys():
+            info_policy = current_player.policy[u_i.node_index]
 
-            child_ev_value = info_policy[action]['ev']
+            for action in info_policy.keys():
 
-            child_visit_count = info_policy[action]['count']
+                child_ev_value = info_policy[action]['ev']
 
-            score = 0
+                child_visit_count = info_policy[action]['count']
 
-            if child_visit_count == 0:
+                score = 0
 
-                score = current_max + 1000
+                if child_visit_count == 0:
 
+                    score = current_max + 1000
+
+                else:
+                    score = child_ev_value + 1.5*np.sqrt(np.log(N_U)/child_visit_count)
+
+                if score > current_max:
+
+                    current_max = score
+
+                    current_max_action = action
+
+            if current_max_action == "check" or current_max_action == "fold":
+                return {current_max_action: 0}
             else:
-                score = child_ev_value + 1.5*np.sqrt(np.log(N_U)/child_visit_count)
+                return {current_max_action: 1}
 
-            if score > current_max:
-
-                current_max = score
-
-                current_max_action = action
-
-
-        if current_max_action == "check" or current_max_action == "fold":
-            return {current_max_action:0}
         else:
-            return {current_max_action:1}
+
+            current_player = self.player1 if u_i.player == "SB" else self.player2
+
+            action_p = []
+
+            actions = []
+
+            for action in current_player.policy[u_i.node_index].keys():
+
+                n_a_count = current_player.policy[u_i.node_index][action]['count']
+
+                action_p.append(float(n_a_count/N_U))
+
+                actions.append(action)
+
+            choose_action = np.random.choice(actions,1,p=action_p)[0]
+
+
+            if choose_action == "check" or choose_action == "fold":
+
+                return {choose_action: 0}
+            else:
+                return {choose_action: 1}
 
     def simulate(self,s):
 
         self.iter_count += 1
 
         '''
+
             Takes in a state
 
             if state.terminal == True:
@@ -456,6 +521,7 @@ class AKQGameState(object):
             r = simulate(s')
             update(InfoState,a,r)
             return r
+
         '''
 
         if s.is_leaf == True:
@@ -472,11 +538,15 @@ class AKQGameState(object):
 
         action = None
 
+        action_select_type = "uct"
+
         if not current_player.info_tree.node_in_tree(infostate):
 
             current_player.info_tree.add_node(infostate)
 
             action = self.rollout_policy(s)
+
+            action_select_type = "rollout"
 
             current_player.out_of_tree = True
 
@@ -502,13 +572,23 @@ class AKQGameState(object):
 
         next_state = self.get_new_state(s,action)
 
+        ###############
+        # REPLAY DATA
+        ###############
+
+        action_type = list(action.keys())[0]
+
         r = self.simulate(next_state)
 
-        self.update(current_player,infostate,action,r)
+        replay_data = [current_player.name,s.node_index,self.get_hand_string(current_player.current_hand),action_type,r[current_player.name]]
+
+        self.replay_data.append(replay_data)
+
+        self.update(current_player,s,infostate,action,r)
 
         return r
 
-    def update(self,current_player,u_i, a, r):
+    def update(self,current_player,s,u_i, a, r):
 
         '''
         N(u_i) += 1
@@ -520,15 +600,27 @@ class AKQGameState(object):
 
         player_reward = r[current_player.name]
 
-        current_player.policy[u_i.node_index][list(a.keys())[0]]['count'] += 1
+        action_type = list(a.keys())[0]
 
-        current_count = current_player.policy[u_i.node_index][list(a.keys())[0]]['count']
+        current_player.policy[u_i.node_index][action_type]['count'] += 1
 
-        current_ev = current_player.policy[u_i.node_index][list(a.keys())[0]]['ev']
+        current_count = current_player.policy[u_i.node_index][action_type]['count']
+
+        current_ev = current_player.policy[u_i.node_index][action_type]['ev']
 
         update = (player_reward - current_ev)/current_count
 
-        current_player.policy[u_i.node_index][list(a.keys())[0]]['ev'] += update
+        current_player.policy[u_i.node_index][action_type]['ev'] += update
+
+        # update policy simply N(u,a) / N(u)
+
+        string_hand = self.get_hand_string(u_i.player_hand)
+
+        for action in list(current_player.policy[u_i.node_index].keys()):
+
+            N_U_A = current_player.policy[u_i.node_index][action]['count']
+
+            self.behavior_policy[current_player.name][s.node_index][action][string_hand] = N_U_A / float(u_i.visit_count)
 
     def run(self,num_iterations):
 

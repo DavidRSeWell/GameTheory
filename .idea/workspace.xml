@@ -5,7 +5,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Poker/NFSP_simple.py" afterPath="$PROJECT_DIR$/Poker/NFSP_simple.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Poker/mcts_akq.py" afterPath="$PROJECT_DIR$/Poker/mcts_akq.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Poker/mcts_behavior.py" afterPath="$PROJECT_DIR$/Poker/mcts_behavior.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SmallGames/rock_paper_scissors.py" afterPath="$PROJECT_DIR$/SmallGames/rock_paper_scissors.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
     </list>
     <ignored path="GameTheory.iws" />
@@ -29,53 +29,18 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="189" column="0" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
+            <state relative-caret-position="871">
+              <caret line="151" column="0" selection-start-line="151" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
                 <element signature="e#475#1434#0" expanded="false" />
                 <element signature="e#1601#2332#0" expanded="false" />
                 <element signature="e#2485#3440#0" expanded="false" />
-                <element signature="e#5900#8075#0" expanded="false" />
-                <element signature="e#7502#7863#0" expanded="false" />
-                <marker date="1519244541000" expanded="false" signature="8212:9962" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NFSP_simple.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Poker/NFSP_simple.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
-              <folding>
-                <element signature="e#573#912#0" expanded="false" />
-                <element signature="e#951#1273#0" expanded="false" />
-                <element signature="e#1349#1410#0" expanded="false" />
-                <element signature="e#1461#1874#0" expanded="false" />
-                <element signature="e#1919#2461#0" expanded="false" />
-                <element signature="e#2497#2526#0" expanded="false" />
-                <element signature="e#2562#2591#0" expanded="false" />
-                <element signature="e#2623#2874#0" expanded="false" />
-                <element signature="e#2933#3545#0" expanded="false" />
-                <element signature="e#3581#3612#0" expanded="false" />
-                <element signature="e#3643#4460#0" expanded="false" />
-                <element signature="e#4193#4432#0" expanded="false" />
-                <element signature="e#4507#4629#0" expanded="false" />
-                <element signature="e#4674#4971#0" expanded="false" />
-                <element signature="e#5021#5165#0" expanded="false" />
-                <element signature="e#5211#5717#0" expanded="false" />
-                <element signature="e#5756#7377#0" expanded="false" />
-                <element signature="e#7432#8845#0" expanded="false" />
-                <element signature="e#8893#8974#0" expanded="false" />
-                <element signature="e#9011#9353#0" expanded="false" />
-                <element signature="e#9401#10418#0" expanded="false" />
-                <element signature="e#10498#10985#0" expanded="false" />
-                <element signature="e#11038#11205#0" expanded="false" />
-                <element signature="e#11244#11999#0" expanded="false" />
-                <element signature="e#12041#13399#0" expanded="false" />
-                <element signature="e#13440#14380#0" expanded="false" />
+                <element signature="e#4693#5058#0" expanded="false" />
+                <element signature="e#5185#5546#0" expanded="false" />
+                <element signature="e#5926#8101#0" expanded="false" />
+                <element signature="e#7528#7889#0" expanded="false" />
+                <marker date="1519532576000" expanded="false" signature="8238:10250" ph="..." />
               </folding>
             </state>
           </provider>
@@ -84,65 +49,37 @@
       <file leaf-file-name="mcts_akq.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Poker/mcts_akq.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="436">
-              <caret line="386" column="27" selection-start-line="386" selection-start-column="27" selection-end-line="386" selection-end-column="27" />
+            <state relative-caret-position="366">
+              <caret line="492" column="0" selection-start-line="492" selection-start-column="0" selection-end-line="492" selection-end-column="0" />
               <folding>
                 <element signature="e#43#833#1" expanded="false" />
                 <element signature="e#1010#2623#0" expanded="false" />
-                <element signature="e#3408#3439#0" expanded="false" />
-                <element signature="e#3484#3781#0" expanded="false" />
-                <element signature="e#3830#3974#0" expanded="false" />
-                <element signature="e#4033#5147#0" expanded="false" />
-                <element signature="e#5191#5572#0" expanded="false" />
-                <element signature="e#5619#5839#0" expanded="false" />
-                <element signature="e#5875#6451#0" expanded="false" />
-                <element signature="e#6889#7085#0" expanded="false" />
-                <element signature="e#7138#7560#0" expanded="false" />
-                <element signature="e#7629#8051#0" expanded="false" />
-                <element signature="e#8105#8481#0" expanded="false" />
-                <element signature="e#8524#8967#0" expanded="false" />
-                <element signature="e#10106#11998#0" expanded="false" />
-                <element signature="e#12673#13281#0" expanded="false" />
+                <element signature="e#4606#4637#0" expanded="false" />
+                <element signature="e#4684#4806#0" expanded="false" />
+                <element signature="e#5198#5321#0" expanded="false" />
+                <element signature="e#5380#6494#0" expanded="false" />
+                <element signature="e#6538#6919#0" expanded="false" />
+                <element signature="e#6966#7186#0" expanded="false" />
+                <element signature="e#7221#8806#0" expanded="false" />
+                <element signature="e#7875#8297#0" expanded="false" />
+                <element signature="e#8366#8788#0" expanded="false" />
+                <element signature="e#8842#9218#0" expanded="false" />
+                <element signature="e#9261#9704#0" expanded="false" />
+                <element signature="e#11760#14042#0" expanded="false" />
+                <element signature="e#14102#15072#0" expanded="false" />
+                <marker date="1519532476000" expanded="false" signature="4841:5148" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mcts_behavior.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Poker/mcts_behavior.py">
+      <file leaf-file-name="node.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Util/node.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="543" column="0" selection-start-line="543" selection-start-column="0" selection-end-line="543" selection-end-column="0" />
+            <state relative-caret-position="-15">
+              <caret line="1" column="24" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
               <folding>
-                <element signature="e#43#833#1" expanded="false" />
-                <element signature="e#1085#7520#0" expanded="false" />
-                <element signature="e#2204#2539#0" expanded="false" />
-                <element signature="e#2575#3042#0" expanded="false" />
-                <element signature="e#3092#3177#0" expanded="false" />
-                <element signature="e#3251#3965#0" expanded="false" />
-                <element signature="e#4027#4445#0" expanded="false" />
-                <element signature="e#4521#4883#0" expanded="false" />
-                <element signature="e#4949#5602#0" expanded="false" />
-                <element signature="e#5680#5864#0" expanded="false" />
-                <element signature="e#5916#6200#0" expanded="false" />
-                <element signature="e#6259#6504#0" expanded="false" />
-                <element signature="e#6561#7269#0" expanded="false" />
-                <element signature="e#7324#7520#0" expanded="false" />
-                <element signature="e#7559#9173#0" expanded="false" />
-                <element signature="e#9205#9422#0" expanded="false" />
-                <element signature="e#9981#10012#0" expanded="false" />
-                <element signature="e#10057#10354#0" expanded="false" />
-                <element signature="e#10403#10547#0" expanded="false" />
-                <element signature="e#10606#11721#0" expanded="false" />
-                <element signature="e#11765#12219#0" expanded="false" />
-                <element signature="e#12266#12486#0" expanded="false" />
-                <element signature="e#12522#13098#0" expanded="false" />
-                <element signature="e#13133#14718#0" expanded="false" />
-                <element signature="e#14754#15133#0" expanded="false" />
-                <element signature="e#15176#15619#0" expanded="false" />
-                <element signature="e#15665#16499#0" expanded="false" />
-                <element signature="e#17015#18998#0" expanded="false" />
-                <element signature="e#19043#19630#0" expanded="false" />
+                <element signature="e#31#683#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -151,13 +88,10 @@
       <file leaf-file-name="XFP.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Poker/XFP.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="613">
-              <caret line="590" column="26" selection-start-line="590" selection-start-column="26" selection-end-line="590" selection-end-column="26" />
+            <state relative-caret-position="124">
+              <caret line="72" column="58" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="58" />
               <folding>
                 <element signature="e#0#678#1" expanded="false" />
-                <element signature="e#782#6508#0" expanded="false" />
-                <element signature="e#1901#2232#0" expanded="false" />
-                <element signature="e#2268#2542#0" expanded="false" />
                 <element signature="e#2592#2677#0" expanded="false" />
                 <element signature="e#2751#3465#0" expanded="false" />
                 <element signature="e#3527#3945#0" expanded="false" />
@@ -180,8 +114,6 @@
                 <element signature="e#14476#14766#0" expanded="false" />
                 <element signature="e#14800#14900#0" expanded="false" />
                 <element signature="e#14934#15036#0" expanded="false" />
-                <element signature="e#15091#15872#0" expanded="false" />
-                <element signature="e#15900#16335#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -220,14 +152,14 @@
         <option value="$PROJECT_DIR$/Results/Poker/MCTS/data/ev_1.csv" />
         <option value="$PROJECT_DIR$/Util/akq_util.py" />
         <option value="$PROJECT_DIR$/Notebooks/rock_paper_scissors.ipynb" />
-        <option value="$PROJECT_DIR$/SmallGames/rock_paper_scissors.py" />
         <option value="$PROJECT_DIR$/Poker/XFP.py" />
         <option value="$PROJECT_DIR$/Poker/NFSP.py" />
         <option value="$PROJECT_DIR$/Util/node.py" />
-        <option value="$PROJECT_DIR$/Poker/NFSP_simple.py" />
         <option value="$PROJECT_DIR$/Poker/mcts_behavior.py" />
-        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/SmallGames/rock_paper_scissors.py" />
+        <option value="$PROJECT_DIR$/Poker/NFSP_simple.py" />
         <option value="$PROJECT_DIR$/Poker/mcts_akq.py" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -302,21 +234,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Poker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GameTheory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GameTheory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Notebooks" />
+              <option name="myItemId" value="SmallGames" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -329,7 +247,7 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/NeuralNetworks" />
     <property name="FullScreen" value="true" />
   </component>
   <component name="RunManager" selected="Python.main">
@@ -624,7 +542,14 @@
       <option name="project" value="LOCAL" />
       <updated>1518993996234</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Cant get NFSP to work. I dont know if I am correctly storing the reward transition.">
+      <created>1519244965029</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1519244965029</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -640,7 +565,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22771084" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26024097" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -676,40 +601,61 @@
     <MESSAGE value="Started working on NFSP" />
     <MESSAGE value="NSFP is running but currently the behavior policy is being updated incorrectly somehow. Have actions with &gt; 100% change" />
     <MESSAGE value="Commiting before moving NSFP to using information nodes instead of trying to explicitly represent state in matrix form." />
-    <option name="LAST_COMMIT_MESSAGE" value="Commiting before moving NSFP to using information nodes instead of trying to explicitly represent state in matrix form." />
+    <MESSAGE value="Cant get NFSP to work. I dont know if I am correctly storing the reward transition." />
+    <option name="LAST_COMMIT_MESSAGE" value="Cant get NFSP to work. I dont know if I am correctly storing the reward transition." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/SmallGames/rock_paper_scissors.py</url>
-          <line>78</line>
+          <line>75</line>
           <option name="timeStamp" value="145" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Poker/NFSP_simple.py</url>
-          <line>232</line>
+          <line>240</line>
           <option name="timeStamp" value="194" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>272</line>
+          <line>274</line>
           <option name="timeStamp" value="228" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>236</line>
+          <line>238</line>
           <option name="timeStamp" value="229" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>347</line>
+          <line>359</line>
           <option name="timeStamp" value="234" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Poker/NFSP_simple.py</url>
+          <line>52</line>
+          <option name="timeStamp" value="268" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Poker/NFSP_simple.py</url>
+          <line>54</line>
+          <option name="timeStamp" value="269" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Poker/NFSP_simple.py</url>
+          <line>80</line>
+          <option name="timeStamp" value="270" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>189</line>
-          <option name="timeStamp" value="240" />
+          <line>222</line>
+          <option name="timeStamp" value="273" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>151</line>
+          <option name="timeStamp" value="291" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -719,49 +665,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="241" />
+      <option name="time" value="292" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Poker/mcts_behavior.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#43#833#1" expanded="false" />
-            <element signature="e#1085#7520#0" expanded="false" />
-            <element signature="e#2204#2539#0" expanded="false" />
-            <element signature="e#2575#3042#0" expanded="false" />
-            <element signature="e#3092#3177#0" expanded="false" />
-            <element signature="e#3251#3965#0" expanded="false" />
-            <element signature="e#4027#4445#0" expanded="false" />
-            <element signature="e#4521#4883#0" expanded="false" />
-            <element signature="e#4949#5602#0" expanded="false" />
-            <element signature="e#5680#5864#0" expanded="false" />
-            <element signature="e#5916#6200#0" expanded="false" />
-            <element signature="e#6259#6504#0" expanded="false" />
-            <element signature="e#6561#7269#0" expanded="false" />
-            <element signature="e#7324#7520#0" expanded="false" />
-            <element signature="e#7559#9173#0" expanded="false" />
-            <element signature="e#9205#9422#0" expanded="false" />
-            <element signature="e#9981#10012#0" expanded="false" />
-            <element signature="e#10057#10354#0" expanded="false" />
-            <element signature="e#10403#10547#0" expanded="false" />
-            <element signature="e#10606#11721#0" expanded="false" />
-            <element signature="e#11765#12219#0" expanded="false" />
-            <element signature="e#12266#12486#0" expanded="false" />
-            <element signature="e#12522#13098#0" expanded="false" />
-            <element signature="e#13133#14718#0" expanded="false" />
-            <element signature="e#14754#15133#0" expanded="false" />
-            <element signature="e#15176#15619#0" expanded="false" />
-            <element signature="e#15665#16499#0" expanded="false" />
-            <element signature="e#17015#18998#0" expanded="false" />
-            <element signature="e#19043#19630#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Util/node.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -840,9 +748,11 @@
             <element signature="e#475#1434#0" expanded="false" />
             <element signature="e#1601#2332#0" expanded="false" />
             <element signature="e#2485#3440#0" expanded="false" />
-            <element signature="e#5900#8075#0" expanded="false" />
-            <element signature="e#7502#7863#0" expanded="false" />
-            <marker date="1519244541000" expanded="false" signature="8212:9962" ph="..." />
+            <element signature="e#4693#5058#0" expanded="false" />
+            <element signature="e#5185#5546#0" expanded="false" />
+            <element signature="e#5926#8101#0" expanded="false" />
+            <element signature="e#7528#7889#0" expanded="false" />
+            <marker date="1519532576000" expanded="false" signature="8238:10250" ph="..." />
           </folding>
         </state>
       </provider>
@@ -922,9 +832,11 @@
             <element signature="e#475#1434#0" expanded="false" />
             <element signature="e#1601#2332#0" expanded="false" />
             <element signature="e#2485#3440#0" expanded="false" />
-            <element signature="e#5900#8075#0" expanded="false" />
-            <element signature="e#7502#7863#0" expanded="false" />
-            <marker date="1519244541000" expanded="false" signature="8212:9962" ph="..." />
+            <element signature="e#4693#5058#0" expanded="false" />
+            <element signature="e#5185#5546#0" expanded="false" />
+            <element signature="e#5926#8101#0" expanded="false" />
+            <element signature="e#7528#7889#0" expanded="false" />
+            <marker date="1519532576000" expanded="false" signature="8238:10250" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1011,9 +923,11 @@
             <element signature="e#475#1434#0" expanded="false" />
             <element signature="e#1601#2332#0" expanded="false" />
             <element signature="e#2485#3440#0" expanded="false" />
-            <element signature="e#5900#8075#0" expanded="false" />
-            <element signature="e#7502#7863#0" expanded="false" />
-            <marker date="1519244541000" expanded="false" signature="8212:9962" ph="..." />
+            <element signature="e#4693#5058#0" expanded="false" />
+            <element signature="e#5185#5546#0" expanded="false" />
+            <element signature="e#5926#8101#0" expanded="false" />
+            <element signature="e#7528#7889#0" expanded="false" />
+            <marker date="1519532576000" expanded="false" signature="8238:10250" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1100,9 +1014,11 @@
             <element signature="e#475#1434#0" expanded="false" />
             <element signature="e#1601#2332#0" expanded="false" />
             <element signature="e#2485#3440#0" expanded="false" />
-            <element signature="e#5900#8075#0" expanded="false" />
-            <element signature="e#7502#7863#0" expanded="false" />
-            <marker date="1519244541000" expanded="false" signature="8212:9962" ph="..." />
+            <element signature="e#4693#5058#0" expanded="false" />
+            <element signature="e#5185#5546#0" expanded="false" />
+            <element signature="e#5926#8101#0" expanded="false" />
+            <element signature="e#7528#7889#0" expanded="false" />
+            <marker date="1519532576000" expanded="false" signature="8238:10250" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1160,9 +1076,11 @@
             <element signature="e#475#1434#0" expanded="false" />
             <element signature="e#1601#2332#0" expanded="false" />
             <element signature="e#2485#3440#0" expanded="false" />
-            <element signature="e#5900#8075#0" expanded="false" />
-            <element signature="e#7502#7863#0" expanded="false" />
-            <marker date="1519244541000" expanded="false" signature="8212:9962" ph="..." />
+            <element signature="e#4693#5058#0" expanded="false" />
+            <element signature="e#5185#5546#0" expanded="false" />
+            <element signature="e#5926#8101#0" expanded="false" />
+            <element signature="e#7528#7889#0" expanded="false" />
+            <marker date="1519532576000" expanded="false" signature="8238:10250" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1310,13 +1228,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Poker/game.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="67" column="55" selection-start-line="67" selection-start-column="55" selection-end-line="67" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Results/Poker/MCTS/data/ev_2.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1345,42 +1256,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SmallGames/rock_paper_scissors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-          <folding>
-            <element signature="e#38#708#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Results/Poker/MCTS/img/akq_extended.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/Cellar/python3/3.6.3/Frameworks/Python.framework/Versions/3.6/lib/python3.6/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="308" column="0" selection-start-line="308" selection-start-column="0" selection-end-line="308" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Poker/NFSP.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Util/node.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding>
-            <element signature="e#714#1453#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1394,78 +1273,6 @@
     <entry file="file://$PROJECT_DIR$/Results/Poker/MCTS/data/akq_extended.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Poker/NFSP_simple.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
-          <folding>
-            <element signature="e#573#912#0" expanded="false" />
-            <element signature="e#951#1273#0" expanded="false" />
-            <element signature="e#1349#1410#0" expanded="false" />
-            <element signature="e#1461#1874#0" expanded="false" />
-            <element signature="e#1919#2461#0" expanded="false" />
-            <element signature="e#2497#2526#0" expanded="false" />
-            <element signature="e#2562#2591#0" expanded="false" />
-            <element signature="e#2623#2874#0" expanded="false" />
-            <element signature="e#2933#3545#0" expanded="false" />
-            <element signature="e#3581#3612#0" expanded="false" />
-            <element signature="e#3643#4460#0" expanded="false" />
-            <element signature="e#4193#4432#0" expanded="false" />
-            <element signature="e#4507#4629#0" expanded="false" />
-            <element signature="e#4674#4971#0" expanded="false" />
-            <element signature="e#5021#5165#0" expanded="false" />
-            <element signature="e#5211#5717#0" expanded="false" />
-            <element signature="e#5756#7377#0" expanded="false" />
-            <element signature="e#7432#8845#0" expanded="false" />
-            <element signature="e#8893#8974#0" expanded="false" />
-            <element signature="e#9011#9353#0" expanded="false" />
-            <element signature="e#9401#10418#0" expanded="false" />
-            <element signature="e#10498#10985#0" expanded="false" />
-            <element signature="e#11038#11205#0" expanded="false" />
-            <element signature="e#11244#11999#0" expanded="false" />
-            <element signature="e#12041#13399#0" expanded="false" />
-            <element signature="e#13440#14380#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Poker/XFP.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="613">
-          <caret line="590" column="26" selection-start-line="590" selection-start-column="26" selection-end-line="590" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#678#1" expanded="false" />
-            <element signature="e#782#6508#0" expanded="false" />
-            <element signature="e#1901#2232#0" expanded="false" />
-            <element signature="e#2268#2542#0" expanded="false" />
-            <element signature="e#2592#2677#0" expanded="false" />
-            <element signature="e#2751#3465#0" expanded="false" />
-            <element signature="e#3527#3945#0" expanded="false" />
-            <element signature="e#4021#4383#0" expanded="false" />
-            <element signature="e#4437#4688#0" expanded="false" />
-            <element signature="e#4741#4850#0" expanded="false" />
-            <element signature="e#4902#5186#0" expanded="false" />
-            <element signature="e#5245#5490#0" expanded="false" />
-            <element signature="e#5547#6255#0" expanded="false" />
-            <element signature="e#6310#6508#0" expanded="false" />
-            <element signature="e#6650#7146#0" expanded="false" />
-            <element signature="e#7238#8566#0" expanded="false" />
-            <element signature="e#8615#8685#0" expanded="false" />
-            <element signature="e#8748#9136#0" expanded="false" />
-            <element signature="e#9197#11104#0" expanded="false" />
-            <element signature="e#11161#11830#0" expanded="false" />
-            <element signature="e#11891#13173#0" expanded="false" />
-            <element signature="e#13300#14035#0" expanded="false" />
-            <element signature="e#14078#14433#0" expanded="false" />
-            <element signature="e#14476#14766#0" expanded="false" />
-            <element signature="e#14800#14900#0" expanded="false" />
-            <element signature="e#14934#15036#0" expanded="false" />
-            <element signature="e#15091#15872#0" expanded="false" />
-            <element signature="e#15900#16335#0" expanded="false" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Poker/mcts_behavior.py">
@@ -1496,53 +1303,164 @@
             <element signature="e#11765#12219#0" expanded="false" />
             <element signature="e#12266#12486#0" expanded="false" />
             <element signature="e#12522#13098#0" expanded="false" />
-            <element signature="e#13133#14718#0" expanded="false" />
             <element signature="e#14754#15133#0" expanded="false" />
             <element signature="e#15176#15619#0" expanded="false" />
             <element signature="e#15665#16499#0" expanded="false" />
             <element signature="e#17015#18998#0" expanded="false" />
             <element signature="e#19043#19630#0" expanded="false" />
+            <marker date="1519244541000" expanded="false" signature="13123:14718" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/python3/3.6.3/Frameworks/Python.framework/Versions/3.6/lib/python3.6/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="288" column="15" selection-start-line="288" selection-start-column="15" selection-end-line="288" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Poker/game.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="53" column="8" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SmallGames/rock_paper_scissors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+          <folding>
+            <element signature="e#38#708#0" expanded="false" />
+            <element signature="e#758#1046#0" expanded="false" />
+            <element signature="e#1087#1423#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Results/Poker/MCTS/img/nsfp.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Poker/NFSP_simple.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="271" column="82" selection-start-line="269" selection-start-column="12" selection-end-line="271" selection-end-column="82" />
+          <folding>
+            <element signature="e#948#1270#0" expanded="false" />
+            <element signature="e#1346#1407#0" expanded="false" />
+            <element signature="e#1458#1871#0" expanded="false" />
+            <element signature="e#1916#2582#0" expanded="false" />
+            <element signature="e#2618#2647#0" expanded="false" />
+            <element signature="e#2683#2712#0" expanded="false" />
+            <element signature="e#2744#2995#0" expanded="false" />
+            <element signature="e#3054#3702#0" expanded="false" />
+            <element signature="e#3738#3769#0" expanded="false" />
+            <element signature="e#3800#4617#0" expanded="false" />
+            <element signature="e#4831#5128#0" expanded="false" />
+            <element signature="e#5178#5301#0" expanded="false" />
+            <element signature="e#5347#5853#0" expanded="false" />
+            <element signature="e#7643#9111#0" expanded="false" />
+            <element signature="e#9159#9240#0" expanded="false" />
+            <element signature="e#9277#9619#0" expanded="false" />
+            <element signature="e#9667#10684#0" expanded="false" />
+            <element signature="e#10764#11534#0" expanded="false" />
+            <element signature="e#11587#11754#0" expanded="false" />
+            <element signature="e#12767#14125#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Poker/XFP.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="72" column="58" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#678#1" expanded="false" />
+            <element signature="e#2592#2677#0" expanded="false" />
+            <element signature="e#2751#3465#0" expanded="false" />
+            <element signature="e#3527#3945#0" expanded="false" />
+            <element signature="e#4021#4383#0" expanded="false" />
+            <element signature="e#4437#4688#0" expanded="false" />
+            <element signature="e#4741#4850#0" expanded="false" />
+            <element signature="e#4902#5186#0" expanded="false" />
+            <element signature="e#5245#5490#0" expanded="false" />
+            <element signature="e#5547#6255#0" expanded="false" />
+            <element signature="e#6310#6508#0" expanded="false" />
+            <element signature="e#6650#7146#0" expanded="false" />
+            <element signature="e#7238#8566#0" expanded="false" />
+            <element signature="e#8615#8685#0" expanded="false" />
+            <element signature="e#8748#9136#0" expanded="false" />
+            <element signature="e#9197#11104#0" expanded="false" />
+            <element signature="e#11161#11830#0" expanded="false" />
+            <element signature="e#11891#13173#0" expanded="false" />
+            <element signature="e#13300#14035#0" expanded="false" />
+            <element signature="e#14078#14433#0" expanded="false" />
+            <element signature="e#14476#14766#0" expanded="false" />
+            <element signature="e#14800#14900#0" expanded="false" />
+            <element signature="e#14934#15036#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Util/node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-15">
+          <caret line="1" column="24" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
+          <folding>
+            <element signature="e#31#683#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Poker/mcts_akq.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="386" column="27" selection-start-line="386" selection-start-column="27" selection-end-line="386" selection-end-column="27" />
+        <state relative-caret-position="366">
+          <caret line="492" column="0" selection-start-line="492" selection-start-column="0" selection-end-line="492" selection-end-column="0" />
           <folding>
             <element signature="e#43#833#1" expanded="false" />
             <element signature="e#1010#2623#0" expanded="false" />
-            <element signature="e#3408#3439#0" expanded="false" />
-            <element signature="e#3484#3781#0" expanded="false" />
-            <element signature="e#3830#3974#0" expanded="false" />
-            <element signature="e#4033#5147#0" expanded="false" />
-            <element signature="e#5191#5572#0" expanded="false" />
-            <element signature="e#5619#5839#0" expanded="false" />
-            <element signature="e#5875#6451#0" expanded="false" />
-            <element signature="e#6889#7085#0" expanded="false" />
-            <element signature="e#7138#7560#0" expanded="false" />
-            <element signature="e#7629#8051#0" expanded="false" />
-            <element signature="e#8105#8481#0" expanded="false" />
-            <element signature="e#8524#8967#0" expanded="false" />
-            <element signature="e#10106#11998#0" expanded="false" />
-            <element signature="e#12673#13281#0" expanded="false" />
+            <element signature="e#4606#4637#0" expanded="false" />
+            <element signature="e#4684#4806#0" expanded="false" />
+            <element signature="e#5198#5321#0" expanded="false" />
+            <element signature="e#5380#6494#0" expanded="false" />
+            <element signature="e#6538#6919#0" expanded="false" />
+            <element signature="e#6966#7186#0" expanded="false" />
+            <element signature="e#7221#8806#0" expanded="false" />
+            <element signature="e#7875#8297#0" expanded="false" />
+            <element signature="e#8366#8788#0" expanded="false" />
+            <element signature="e#8842#9218#0" expanded="false" />
+            <element signature="e#9261#9704#0" expanded="false" />
+            <element signature="e#11760#14042#0" expanded="false" />
+            <element signature="e#14102#15072#0" expanded="false" />
+            <marker date="1519532476000" expanded="false" signature="4841:5148" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Results/Poker/MCTS/img/akq_extended.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="189" column="0" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
+        <state relative-caret-position="871">
+          <caret line="151" column="0" selection-start-line="151" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
             <element signature="e#475#1434#0" expanded="false" />
             <element signature="e#1601#2332#0" expanded="false" />
             <element signature="e#2485#3440#0" expanded="false" />
-            <element signature="e#5900#8075#0" expanded="false" />
-            <element signature="e#7502#7863#0" expanded="false" />
-            <marker date="1519244541000" expanded="false" signature="8212:9962" ph="..." />
+            <element signature="e#4693#5058#0" expanded="false" />
+            <element signature="e#5185#5546#0" expanded="false" />
+            <element signature="e#5926#8101#0" expanded="false" />
+            <element signature="e#7528#7889#0" expanded="false" />
+            <marker date="1519532576000" expanded="false" signature="8238:10250" ph="..." />
           </folding>
         </state>
       </provider>

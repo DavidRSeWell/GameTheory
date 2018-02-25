@@ -71,9 +71,6 @@ def FictitiousPlay(n_iterations):
 
     return p1, p2
 
-
-
-
 optimal_strategy = FictitiousPlay(10000)
 
 print("Optimal strategy")
