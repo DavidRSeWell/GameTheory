@@ -1,63 +1,14 @@
 '''
-    MCTS solution to the AKQ game
+This is an implemenation of using MCTS to solve the AKQ game
+but substituting DQN in for the Q(s,a) function that we used
+previously
 '''
 
-'''
-    Software design:
-
-        Player:
-
-            Props:
-
-                Range: {A,Q,K}
-
-                Chips: number of big blinds
-
-        Tree:
-
-            Props:
-
-                Root:
-
-                Struct: - The current structure of the tree. { a: {b,c}, b: {c,d} ...
-
-            Actions:
-
-                addNode
-
-                getNode
-
-                getChildren
-
-        Nodes:
-
-            Properties:
-
-                Pot: Size of the current pot
-
-                Player: Player whos action it is
-
-                Actions: Possible actions
-
-
-
-        Solver:
-
-            Props:
-
-                Type: - Type of solver it is. MCTS ect...
-
-                Tree: - The current tree
-
-                Strategy - The current strategy implemented on the current tree
-
-'''
 
 import random
 import numpy as np
 from Util.node import InfoNode,PokerNode
 from Util.tree import InfoTree
-#from RL.MCTS.Model import MCTS
 import random
 import gym
 import numpy as np
@@ -65,7 +16,6 @@ from collections import deque
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.optimizers import Adam
-
 
 class DQNAgent:
 
@@ -252,6 +202,8 @@ class AKQGameState(object):
 
         self.iter_count = 0
 
+        self.actions = ["bet", "check", "call", "fold"]
+
         self.deck = [3,2,1]
 
         self.game_tree = game_tree # the full game tree for for the information trees to reference
@@ -304,9 +256,23 @@ class AKQGameState(object):
 
                 self.behavior_policy[curr_node.player][curr_node.node_index][action] = {'A':0.0,'K':0.0,'Q':0.0}
 
+        dqn = DQNAgent(10, 4)
+
+        self.DQN = dqn
+
     def deal_hand(self):
 
         return random.choice(self.deck)
+
+    def get_child_info(self, u_i, a):
+
+        for child in u_i.children:
+            if u_i.action == a:
+                return child
+
+        # should not reach this location
+
+        raise Exception("g_child_info parent does not have child with action: " + str(a))
 
     def get_hand_string(self,hand):
 
@@ -396,15 +362,23 @@ class AKQGameState(object):
 
         raise Exception("get_new_state was not able to find a child with the given action")
 
-    def get_child_info(self,u_i,a):
+    def get_possible_action(self,s):
 
-        for child in u_i.children:
-            if u_i.action == a:
-                return child
+        return [self.actions.index(list(child.action.keys())[0]) for child in s.children]
 
-        # should not reach this location
+    def get_state_vector(self,s,current_player):
 
-        raise Exception("g_child_info parent does not have child with action: " + str(a))
+        player_vector = [1,0] if current_player.name == "SB" else [0,1]
+
+        node_vector = np.zeros(len(self.game_tree.nodes))
+
+        node_vector[s.node_index] = 1
+
+        hand_vector = np.zeros(len(self.deck))
+
+        hand_vector[current_player.current_hand] = 1
+
+        return  player_vector + node_vector + hand_vector
 
     def reward(self,s):
 
@@ -657,7 +631,6 @@ class AKQGameState(object):
             action = self.select_uct(infostate)
 
 
-
         next_state = self.get_new_state(s,action)
 
         ###############
@@ -668,6 +641,8 @@ class AKQGameState(object):
 
         r = self.simulate(next_state)
 
+        self.store_transition(current_player, s, action, r[s.player], next_state)
+
         replay_data = [current_player.name,s.node_index,self.get_hand_string(current_player.current_hand),action_type,r[current_player.name]]
 
         self.replay_data.append(replay_data)
@@ -675,6 +650,14 @@ class AKQGameState(object):
         self.update(current_player,s,infostate,action,r)
 
         return r
+
+    def store_transition(self,current_player,s,action,r,next_state):
+
+        current_node_vector = self.get_state_vector(s,current_player)
+
+        next_node_vector = self.get_state_vector(next_state,current_player)
+
+        self.DQN.remember(current_node_vector, action, r, next_node_vector, next_state.is_leaf)
 
     def update(self,current_player,s,u_i, a, r):
 
@@ -740,10 +723,4 @@ class AKQGameState(object):
 
 
         return [self.player1.policy,self.player2.policy]
-
-
-
-
-
-
 
